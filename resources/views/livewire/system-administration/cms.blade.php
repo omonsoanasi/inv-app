@@ -134,7 +134,7 @@
                                 <span class="text-gray-800 dark:text-gray-200 font-medium">{{ $activity->activity_name }} : {{ $activity->activity_commission }}</span>
                             </div>
                             <button
-                                wire:click="deleteHeaderCarouselText({{ $activity->id }})"
+                                wire:click="deleteActivity({{ $activity->id }})"
                                 wire:confirm="Are you sure you want to remove this item?"
                                 type="button"
                                 class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 transition-colors dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
@@ -176,7 +176,7 @@
                                         </div>
                                         <div>
                                             <label for="commission" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Commission</label>
-                                            <input wire:model="activity_commission" type="text" id="commission" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="10" required />
+                                            <input wire:model="activity_commission" type="number" id="commission" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="10" required />
                                         </div>
                                         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
                                     </form>

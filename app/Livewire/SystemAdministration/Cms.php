@@ -49,7 +49,7 @@ class Cms extends Component
     public function deleteHeaderCarouselText($id)
     {
         HeaderTextCarousel::destroy($id);
-        session()->flash('message', 'Header Carousel has been deleted.');
+        session()->flash('deleted', 'Header Carousel has been deleted.');
         return redirect()->route('cms');
     }
 
@@ -80,6 +80,12 @@ class Cms extends Component
         return redirect()->route('cms');
     }
 
+    public function deleteActivity($id)
+    {
+        Activity::destroy($id);
+        session()->flash('deleted', 'Activity has been deleted.');
+        return redirect()->route('cms');
+    }
     public function render()
     {
         return view('livewire.system-administration.cms', [

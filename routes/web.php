@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::view('/', 'welcome');
+Route::view('/mobile', 'mobile');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

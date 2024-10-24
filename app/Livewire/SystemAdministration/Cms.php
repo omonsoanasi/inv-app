@@ -38,7 +38,7 @@ class Cms extends Component
 
     public function saveHeaderCarousel()
     {
-        $this->validate();
+//        $this->validate();
         $headerTextCarousel = HeaderTextCarousel::create([
             'header_carousel_text' => $this->headerCarouselText,
         ]);

@@ -2,6 +2,8 @@
     $headerCarousels = \App\Models\HeaderTextCarousel::all();
     $heroSection = \App\Models\HeroSection::first();
     $activities = \App\Models\Activity::latest()->limit(10)->get();
+    $regulators = \App\Models\RegulatedBy::latest()->limit(2)->get();
+    $howTo = \App\Models\HowTo::first();
 @endphp
 <x-app-layout>
     <div
@@ -178,50 +180,53 @@
 
         <h4 class="font-semibold">Regulated By</h4>
         <div class="grid grid-cols-1">
-            <div class="">
-                <div class="flex  bg-white shadow-md  rounded-2xl p-2">
-                    <img src="https://images.unsplash.com/photo-1439130490301-25e322d88054?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
-                         alt="Just a flower" class=" w-16  object-cover  h-16 rounded-xl">
-                    <div class="flex flex-col justify-center w-full px-2 py-1">
-                        <div class="flex justify-between items-center ">
-                            <div class="flex flex-col">
-                                <h2 class="text-sm font-medium">Massive Dynamic</h2>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-5 w-5 text-gray-500 hover:text-blue-400 cursor-pointer" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
-                            </svg>
-                        </div>
-                        <div class="flex pt-2  text-sm text-gray-400">
-                            <div class="flex items-center mr-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-1"
-                                     viewBox="0 0 20 20" fill="currentColor">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                    </path>
+            @foreach($regulators as $regulator)
+                <div class="">
+                    <div class="flex  bg-white shadow-md  rounded-2xl p-2">
+                        <img src="https://images.unsplash.com/photo-1439130490301-25e322d88054?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
+                             alt="Just a flower" class=" w-16  object-cover  h-16 rounded-xl">
+                        <div class="flex flex-col justify-center w-full px-2 py-1">
+                            <div class="flex justify-between items-center ">
+                                <div class="flex flex-col">
+                                    <h2 class="text-sm font-medium">{{ $regulator->regulator_name }}</h2>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="h-5 w-5 text-gray-500 hover:text-blue-400 cursor-pointer" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
                                 </svg>
-                                <p class="font-normal">4.5</p>
                             </div>
-                            <div class="flex items-center font-medium text-gray-900 ">
-                                $1800
-                                <span class="text-gray-400 text-sm font-normal"> /wk</span>
-                            </div>
+{{--                            <div class="flex pt-2  text-sm text-gray-400">--}}
+{{--                                <div class="flex items-center mr-auto">--}}
+{{--                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-1"--}}
+{{--                                         viewBox="0 0 20 20" fill="currentColor">--}}
+{{--                                        <path--}}
+{{--                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">--}}
+{{--                                        </path>--}}
+{{--                                    </svg>--}}
+{{--                                    <p class="font-normal">4.5</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="flex items-center font-medium text-gray-900 ">--}}
+{{--                                    $1800--}}
+{{--                                    <span class="text-gray-400 text-sm font-normal"> /wk</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
 
         <h4 class="font-semibold">How to use this platform</h4>
         <section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply h-auto rounded-lg">
             <div class="px-4 mx-auto max-w-screen-xl text-center py-4 lg:py-5">
-                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">We invest</h1>
-                <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Investments.</p>
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+                    {{ $howTo->how_title ?? 'Not set' }}</h1>
+                <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">{{ $howTo->how_text ?? 'Not set' }}</p>
                 <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                     <a href="#" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                        Get started
+                        {{ $howTo->how_call_to_action }}
                         <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>

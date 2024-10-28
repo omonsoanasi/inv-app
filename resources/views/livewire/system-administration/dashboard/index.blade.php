@@ -15,14 +15,6 @@
                 <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
         </button>
-        <button
-            class="inline-flex items-center h-8 pl-2.5 pr-2 rounded-md shadow text-gray-700 dark:text-gray-400 dark:border-gray-800 border border-gray-200 leading-none py-0">
-            Filter by
-            <svg viewBox="0 0 24 24" class="w-4 ml-1.5 text-gray-400 dark:text-gray-600" stroke="currentColor"
-                 stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-        </button>
         <div class="ml-auto text-gray-500 text-xs sm:inline-flex hidden items-center">
             <span class="mr-3">Page 2 of 4</span>
             <button

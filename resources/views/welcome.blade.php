@@ -21,7 +21,7 @@
         x-init="startCarousel()"
         @mouseover="stopCarousel()"
         @mouseleave="startCarousel()"
-        class="relative h-10 w-full bg-indigo-600 text-white overflow-hidden"
+        class="relative h-10 w-full bg-indigo-600 text-white overflow-hidden rounded-lg mb-2"
         x-ref="texts"
     >
         @foreach($headerCarousels as $index => $headerCarousel)

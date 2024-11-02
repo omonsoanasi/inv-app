@@ -59,25 +59,44 @@
 
             <transition name="custom" enter-active-class="animate__animated animate__bounceInDown" leave-active-class="animate__animated animate__bounceOutUp">
                 <!-- Modal -->
-                <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-40">
-                    <div class="w-11/12 lg:w-full max-w-xl mx-auto bg-white flex flex-col shadow-2xl rounded-md">
-                        <!-- Modal header -->
-                        <div class="p-6 border-b-4 border-gray-200 text-lg font-bold text-indigo-400">Online Service</div>
-                        <!-- ./Modal header -->
+                <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
+                    <div class="w-11/12 lg:w-full max-w-xl mx-auto bg-white shadow-2xl rounded-md overflow-hidden">
 
-                        <!-- Modal body -->
-                        <div class="p-6">
-                            Choose your preferred customer service contact method
+                        <!-- Modal Header -->
+                        <div class="p-6 border-b-4 border-gray-200 text-lg font-bold text-indigo-400 text-center">
+                            Online Service
                         </div>
-                        <!-- ./Modal body -->
 
-                        <!-- Modal footer -->
+                        <!-- Modal Content -->
+                        <div class="p-6 text-center">
+                            <div class="text-lg font-semibold mb-4">
+                                Choose your preferred online customer service contact method
+                            </div>
+
+                            <!-- Option 1: Telegram Chat -->
+                            <a href="https://t.me/YourTelegramChatLink" target="_blank" class="flex items-center justify-between w-full p-3 mb-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+                                <span>Chat on Telegram</span>
+                                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23.77 3.73a2 2 0 0 0-2.22-.3L2.78 11.45a2 2 0 0 0 .06 3.66l4.94 1.7a1 1 0 0 0 1.26-.54l2.48-5.5 6.76 4.99a1 1 0 0 0 1.56-.56l3.5-10.5a2 2 0 0 0-.5-1.97Z"/>
+                                </svg>
+                            </a>
+
+                            <!-- Option 2: Chat in App -->
+                            <button class="w-full p-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                                Chat in the App
+                            </button>
+                        </div>
+
+                        <!-- Modal Footer -->
                         <div class="border-t-4 border-gray-200 p-6 flex justify-end">
-                            <button @click="showModal = false" class="bg-green-400 hover:bg-green-500 focus:outline-none transition px-4 py-2 rounded-md text-white transition duration-500 ease-in-out">Close Modal</button>
+                            <button @click="showModal = false" class="bg-green-400 hover:bg-green-500 focus:outline-none transition px-4 py-2 rounded-md text-white duration-500 ease-in-out">
+                                Close
+                            </button>
                         </div>
-                        <!-- ./Modal footer -->
+
                     </div>
                 </div>
+
                 <!-- ./Modal -->
             </transition>
 

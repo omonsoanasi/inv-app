@@ -42,7 +42,7 @@
         <div class="flex items-center justify-between overflow-y-scroll text-gray-500 cursor-pointer space-x-3">
             <div
                 class="flex flex-col items-center justify-center w-20  h-20  bg-green-600 rounded-2xl text-green-600 shadow hover:shadow-md cursor-pointer mb-2 p-1 transition ease-in duration-300">
-                <a href="{{ auth()->check() ? route('recharge') : route('login') }}">
+                <a href="{{ auth()->check() ? 'https://tronscan.org/#/address/0x973182dB27E929e76BB35ff2C08aec6a90BB7614' : route('login') }}">
                     <p class="text-sm font-extrabold text-white mt-1">Recharge</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-6 w-6 text-white" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>

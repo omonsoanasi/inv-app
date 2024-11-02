@@ -49,7 +49,12 @@
             <!-- Modal trigger -->
             <button
                 @click="showModal = !showModal"
-                class="bg-indigo-500 hover:bg-indigo-600 focus:outline-none rounded-md px-6 py-3 text-white transition duration-500 ease-in-out">Open modal</button>
+                class="fixed bottom-32 right-5 bg-indigo-500 hover:bg-indigo-600 focus:outline-none rounded-md px-6 py-3 text-white transition duration-500 ease-in-out">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6" viewBox="0 0 16 16">
+                    <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5" />
+                </svg>
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full border-4 opacity-50"></span>
+            </button>
             <!-- ./Modal trigger -->
 
             <transition name="custom" enter-active-class="animate__animated animate__bounceInDown" leave-active-class="animate__animated animate__bounceOutUp">
@@ -57,12 +62,12 @@
                 <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-40">
                     <div class="w-11/12 lg:w-full max-w-xl mx-auto bg-white flex flex-col shadow-2xl rounded-md">
                         <!-- Modal header -->
-                        <div class="p-6 border-b-4 border-gray-200 text-lg font-bold text-indigo-400">Modal title</div>
+                        <div class="p-6 border-b-4 border-gray-200 text-lg font-bold text-indigo-400">Online Service</div>
                         <!-- ./Modal header -->
 
                         <!-- Modal body -->
                         <div class="p-6">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident officiis ipsam cupiditate illum laborum atque voluptatibus ut doloremque excepturi quisquam repellendus dolor deserunt totam tempore, laboriosam earum sapiente esse praesentium.
+                            Choose your preferred customer service contact method
                         </div>
                         <!-- ./Modal body -->
 

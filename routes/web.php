@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\CustWithdraw;
 use App\Livewire\SystemAdministration\AccessControl;
 use App\Livewire\SystemAdministration\Cms;
 use App\Livewire\SystemAdministration\Dashboard\AdminDashboard;
@@ -29,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/app-dashboard', AdminDashboard::class)->name('app-dashboard');
     Route::get('/access-control', AccessControl::class)->name('access-control');
     Route::get('/cms', Cms::class)->name('cms');
+    Route::get('/cust-withdraw', CustWithdraw::class)->name('cust-withdraw');
 });
 
 require __DIR__.'/auth.php';

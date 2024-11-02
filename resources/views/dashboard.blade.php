@@ -7,36 +7,20 @@
 @endphp
 <x-app-layout>
     <div
-        x-data="{
-        current: 0,
-        startCarousel() {
-            this.autoSlide = setInterval(() => {
-                this.current = (this.current + 1) % this.$refs.texts.children.length;
-            }, 1500);
-        },
-        stopCarousel() {
-            clearInterval(this.autoSlide);
-        }
-    }"
-        x-init="startCarousel()"
-        @mouseover="stopCarousel()"
-        @mouseleave="startCarousel()"
-        class="relative h-10 w-full bg-indigo-600 text-white overflow-hidden"
-        x-ref="texts"
+        class="relative h-10 w-full bg-indigo-600 text-white overflow-hidden rounded-lg mb-2"
+        onmouseover="stopCarousel()"
+        onmouseleave="startCarousel()"
+        id="carousel-container"
     >
         @foreach($headerCarousels as $index => $headerCarousel)
             <!-- Carousel Text -->
             <div class="absolute inset-0 flex justify-center items-center text-center transition-opacity duration-500"
-                 x-show="current === {{ $index }}"
-                 x-transition:enter="transition-opacity"
-                 x-transition:leave="transition-opacity"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:leave-end="opacity-0">
+                 data-index="{{ $index }}"
+                 style="opacity: {{ $index === 0 ? '1' : '0' }};">
                 <p class="text-sm font-bold">{{ $headerCarousel->header_carousel_text }}</p>
             </div>
         @endforeach
     </div>
-
     <section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply h-auto rounded-lg">
         <div class="px-4 mx-auto max-w-screen-xl text-center py-4 lg:py-5">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">{{ $heroSection->title ?? 'Not set' }}</h1>
@@ -51,26 +35,40 @@
             </div>
         </div>
     </section>
-
-
     <div class=" p-3 space-y-4 z-0">
         <h4 class="font-semibold mt-2">Actions</h4>
         <div class="flex items-center justify-between overflow-y-scroll text-gray-500 cursor-pointer space-x-3">
             <div
-                class="flex flex-col items-center justify-center w-20  h-20  bg-green-200 rounded-2xl text-green-600 shadow hover:shadow-md cursor-pointer mb-2 p-1 bg-white transition ease-in duration-300">
-                <i class="far fa-hotel"></i>
-                <p class="text-sm mt-1">Recharge</p>
+                class="flex flex-col items-center justify-center w-20  h-20  bg-green-600 rounded-2xl text-green-600 shadow hover:shadow-md cursor-pointer mb-2 p-1 transition ease-in duration-300">
+                <a href="{{ auth()->check() ? 'https://tronscan.org/#/address/0x973182dB27E929e76BB35ff2C08aec6a90BB7614' : route('login') }}">
+                <p class="text-sm font-extrabold text-white mt-1">Recharge</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-6 w-6 text-white" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>
+                        <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195z"/>
+                        <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083q.088-.517.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z"/>
+                        <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567"/>
+                    </svg>
+                </a>
+
             </div>
             <div
-                class="flex flex-col items-center justify-center w-20  h-20  bg-yellow-200 rounded-2xl text-yellow-600  shadow hover:shadow-md cursor-pointer mb-2 p-1 bg-white transition ease-in duration-300">
+                class="flex flex-col items-center justify-center w-20  h-20  bg-yellow-600 rounded-2xl text-yellow-600  shadow hover:shadow-md cursor-pointer mb-2 p-1 transition ease-in duration-300">
                 <i class="far fa-bus"></i>
-                <p class="text-sm mt-1">Withdraw</p>
+                <a href="{{ auth()->check() ? route('cust-withdraw') : route('login') }}">
+                    <p class="text-sm font-extrabold text-white mt-1">Withdraw</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-6 w-6 text-white" viewBox="0 0 16 16">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                </a>
             </div>
 
             <div
                 class="flex flex-col items-center justify-center w-20  h-20  bg-indigo-200  rounded-2xl  text-indigo-500 shadow hover:shadow-md cursor-pointer mb-2 p-1 bg-white transition ease-in duration-300">
                 <i class="far fa-mountains"></i>
-                <p class="text-sm mt-1">Our Company</p>
+                <p class="text-sm font-extrabold mt-1">Our Company</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-6 w-6" viewBox="0 0 16 16">
+                    <path d="M15 .5a.5.5 0 0 0-.724-.447l-8 4A.5.5 0 0 0 6 4.5v3.14L.342 9.526A.5.5 0 0 0 0 10v5.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V14h1v1.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zM2 11h1v1H2zm2 0h1v1H4zm-1 2v1H2v-1zm1 0h1v1H4zm9-10v1h-1V3zM8 5h1v1H8zm1 2v1H8V7zM8 9h1v1H8zm2 0h1v1h-1zm-1 2v1H8v-1zm1 0h1v1h-1zm3-2v1h-1V9zm-1 2h1v1h-1zm-2-4h1v1h-1zm3 0v1h-1V7zm-2-2v1h-1V5zm1 0h1v1h-1z"/>
+                </svg>
             </div>
         </div>
         <h4 class="font-semibold">Activities</h4>
@@ -102,78 +100,44 @@
 
 
         <h4 class="font-semibold">Member Activities</h4>
-        <div x-data="{
-    deposits: [
-        { name: 'John Doe', amount: '$150', time: '2 minutes ago' },
-        { name: 'Jane Smith', amount: '$200', time: '5 minutes ago' },
-        { name: 'Alice Johnson', amount: '$350', time: '10 minutes ago' },
-        { name: 'Bob Brown', amount: '$50', time: '15 minutes ago' },
-        { name: 'Charlie Davis', amount: '$100', time: '20 minutes ago' },
-    ],
-    newDeposit: { name: '', amount: '', time: '' },
-    maxDeposits: 5,
-    scrollSpeed: 1, // Speed of the scroll in pixels per frame
-    scrollPosition: 0,
-    listHeight: 0,
-    containerHeight: 0,
-    interval: null,
-
-    addDeposit() {
-        this.newDeposit = { name: `User ${Math.floor(Math.random() * 100)}`, amount: `$${Math.floor(Math.random() * 500 + 1)}`, time: 'Just now' };
-        this.deposits.push(this.newDeposit); // Add new deposit to the end
-        if (this.deposits.length > this.maxDeposits) {
-            this.deposits.shift(); // Maintain only the latest 5 deposits
-        }
-    },
-
-    startScroll() {
-        // Start scrolling once the DOM is ready
-        this.$nextTick(() => {
-            this.listHeight = this.$refs.list.scrollHeight; // Total height of the list (including duplicated items)
-            this.containerHeight = this.$refs.container.clientHeight; // Height of the visible container
-
-            // Scroll the list continuously
-            this.interval = setInterval(() => {
-                this.scrollPosition -= this.scrollSpeed;
-
-                // Reset scroll position when it reaches the end of the list
-                if (this.scrollPosition <= -this.listHeight / 2) {
-                    this.scrollPosition = 0;
-                }
-            }, 1000 / 60); // 60 FPS
-        });
-    },
-
-    stopScroll() {
-        clearInterval(this.interval);
-    }
-}" x-init="startScroll()" class="grid grid-cols-1">
+        <div class="grid grid-cols-1" id="deposit-container">
             <div>
                 <!-- Deposits List -->
-                <div x-ref="container" class="relative h-40 overflow-hidden">
-                    <div x-ref="list" class="absolute" :style="`transform: translateY(${scrollPosition}px)`">
+                <div id="scroll-container" class="relative h-40 overflow-hidden">
+                    <div id="scroll-list" class="absolute">
                         <!-- Original Deposits List -->
-                        <template x-for="(deposit, index) in deposits" :key="index">
-                            <div class="flex justify-between items-center p-2 border-b border-gray-200">
-                                <span class="font-medium" x-text="deposit.name"></span>
-                                <span class="text-green-500" x-text="deposit.amount"></span>
-                                <span class="text-gray-500 text-sm" x-text="deposit.time"></span>
-                            </div>
-                        </template>
-                        <!-- Duplicated Deposits List -->
-                        <template x-for="(deposit, index) in deposits" :key="index + '_duplicate'">
-                            <div class="flex justify-between items-center p-2 border-b border-gray-200">
-                                <span class="font-medium" x-text="deposit.name"></span>
-                                <span class="text-green-500" x-text="deposit.amount"></span>
-                                <span class="text-gray-500 text-sm" x-text="deposit.time"></span>
-                            </div>
-                        </template>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">John Doe</span>
+                            <span class="text-green-500">$150</span>
+                            <span class="text-gray-500 text-sm">2 minutes ago</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">Jane Smith</span>
+                            <span class="text-green-500">$200</span>
+                            <span class="text-gray-500 text-sm">5 minutes ago</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">Alice Johnson</span>
+                            <span class="text-green-500">$350</span>
+                            <span class="text-gray-500 text-sm">10 minutes ago</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">Bob Brown</span>
+                            <span class="text-green-500">$50</span>
+                            <span class="text-gray-500 text-sm">15 minutes ago</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">Charlie Davis</span>
+                            <span class="text-green-500">$100</span>
+                            <span class="text-gray-500 text-sm">20 minutes ago</span>
+                        </div>
+                        <!-- Duplicated Deposits List (for smooth scroll looping) -->
                     </div>
                 </div>
             </div>
 
             <!-- Button to simulate new deposits -->
-            <button @click="addDeposit()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
+            <button onclick="addDeposit()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
                 Add Deposit
             </button>
         </div>
@@ -181,7 +145,7 @@
         <h4 class="font-semibold">Regulated By</h4>
         <div class="grid grid-cols-1">
             @foreach($regulators as $regulator)
-                <div class="">
+                <div class="mt-4">
                     <div class="flex  bg-white shadow-md  rounded-2xl p-2">
                         <img src="https://images.unsplash.com/photo-1439130490301-25e322d88054?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
                              alt="Just a flower" class=" w-16  object-cover  h-16 rounded-xl">
@@ -197,21 +161,6 @@
                                           d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
                                 </svg>
                             </div>
-{{--                            <div class="flex pt-2  text-sm text-gray-400">--}}
-{{--                                <div class="flex items-center mr-auto">--}}
-{{--                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-1"--}}
-{{--                                         viewBox="0 0 20 20" fill="currentColor">--}}
-{{--                                        <path--}}
-{{--                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">--}}
-{{--                                        </path>--}}
-{{--                                    </svg>--}}
-{{--                                    <p class="font-normal">4.5</p>--}}
-{{--                                </div>--}}
-{{--                                <div class="flex items-center font-medium text-gray-900 ">--}}
-{{--                                    $1800--}}
-{{--                                    <span class="text-gray-400 text-sm font-normal"> /wk</span>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -235,5 +184,100 @@
             </div>
         </section>
     </div>
+    <script>
+        let current = 0;
+        let autoSlide;
 
+        function showSlide(index) {
+            const slides = document.querySelectorAll('#carousel-container > div');
+            slides.forEach((slide, idx) => {
+                slide.style.opacity = idx === index ? '1' : '0';
+            });
+        }
+
+        function startCarousel() {
+            autoSlide = setInterval(() => {
+                const slides = document.querySelectorAll('#carousel-container > div');
+                current = (current + 1) % slides.length;
+                showSlide(current);
+            }, 1500);
+        }
+
+        function stopCarousel() {
+            clearInterval(autoSlide);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            startCarousel();
+        });
+    </script>
+    <script>
+        const deposits = [
+            { name: 'John Doe', amount: '$150', time: '2 minutes ago' },
+            { name: 'Jane Smith', amount: '$200', time: '5 minutes ago' },
+            { name: 'Alice Johnson', amount: '$350', time: '10 minutes ago' },
+            { name: 'Bob Brown', amount: '$50', time: '15 minutes ago' },
+            { name: 'Charlie Davis', amount: '$100', time: '20 minutes ago' }
+        ];
+        const maxDeposits = 5;
+        const scrollSpeed = 1;
+        let scrollPosition = 0;
+        let interval;
+
+        // Add Deposit Function
+        function addDeposit() {
+            const newDeposit = {
+                name: `User ${Math.floor(Math.random() * 100)}`,
+                amount: `$${Math.floor(Math.random() * 500 + 1)}`,
+                time: 'Just now'
+            };
+            deposits.push(newDeposit);
+            if (deposits.length > maxDeposits) {
+                deposits.shift();
+            }
+            renderDeposits();
+        }
+
+        // Render Deposits Function
+        function renderDeposits() {
+            const scrollList = document.getElementById('scroll-list');
+            scrollList.innerHTML = deposits.concat(deposits).map(deposit => `
+            <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                <span class="font-medium">${deposit.name}</span>
+                <span class="text-green-500">${deposit.amount}</span>
+                <span class="text-gray-500 text-sm">${deposit.time}</span>
+            </div>
+        `).join('');
+        }
+
+        // Scroll Function
+        function startScroll() {
+            const scrollContainer = document.getElementById('scroll-container');
+            const scrollList = document.getElementById('scroll-list');
+
+            interval = setInterval(() => {
+                scrollPosition -= scrollSpeed;
+                scrollList.style.transform = `translateY(${scrollPosition}px)`;
+
+                // Reset scroll position for smooth loop
+                if (scrollPosition <= -scrollList.scrollHeight / 2) {
+                    scrollPosition = 0;
+                }
+            }, 1000 / 60);
+        }
+
+        function stopScroll() {
+            clearInterval(interval);
+        }
+
+        // Initialize Scroll and Render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDeposits();
+            startScroll();
+        });
+
+        // Stop scroll on mouseover and start on mouseleave
+        document.getElementById('scroll-container').addEventListener('mouseover', stopScroll);
+        document.getElementById('scroll-container').addEventListener('mouseleave', startScroll);
+    </script>
 </x-app-layout>

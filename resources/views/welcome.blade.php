@@ -56,7 +56,7 @@
             <div
                 class="flex flex-col items-center justify-center w-20  h-20  bg-yellow-600 rounded-2xl text-yellow-600  shadow hover:shadow-md cursor-pointer mb-2 p-1 transition ease-in duration-300">
                 <i class="far fa-bus"></i>
-                <a href="{{ auth()->check() ? route('withdraw') : route('login') }}">
+                <a href="{{ auth()->check() ? route('cust-withdraw') : route('login') }}">
                     <p class="text-sm font-extrabold text-white mt-1">Withdraw</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-6 w-6 text-white" viewBox="0 0 16 16">
                         <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
@@ -147,7 +147,7 @@
         <h4 class="font-semibold">Regulated By</h4>
         <div class="grid grid-cols-1">
             @foreach($regulators as $regulator)
-                <div class="">
+                <div class="mt-4">
                     <div class="flex  bg-white shadow-md  rounded-2xl p-2">
                         <img src="https://images.unsplash.com/photo-1439130490301-25e322d88054?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
                              alt="Just a flower" class=" w-16  object-cover  h-16 rounded-xl">

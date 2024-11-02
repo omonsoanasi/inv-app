@@ -33,30 +33,45 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 
-<div>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 px-6">
+    <div class="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+
+        <!-- Header Message -->
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">
+                {{ __('Confirm Password') }}
+            </h2>
+            <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+                {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+            </p>
+        </div>
+
+        <!-- Password Confirmation Form -->
+        <form wire:submit="confirmPassword" class="space-y-6">
+
+            <!-- Password -->
+            <div>
+                <x-input-label for="password" :value="__('Password')" class="text-sm font-medium text-gray-700 dark:text-gray-300" />
+                <x-text-input
+                    wire:model="password"
+                    id="password"
+                    class="block w-full mt-1 px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                    type="password"
+                    name="password"
+                    required
+                    autocomplete="current-password"
+                    placeholder="Enter your password"
+                />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
+
+            <!-- Confirm Button -->
+            <div class="flex justify-end mt-6">
+                <x-primary-button class="w-full sm:w-auto px-6 py-3">
+                    {{ __('Confirm') }}
+                </x-primary-button>
+            </div>
+        </form>
     </div>
-
-    <form wire:submit="confirmPassword">
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input wire:model="password"
-                          id="password"
-                          class="block mt-1 w-full"
-                          type="password"
-                          name="password"
-                          required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
-    </form>
 </div>
+

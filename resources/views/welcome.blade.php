@@ -7,36 +7,20 @@
 @endphp
 <x-guest-layout>
     <div
-        x-data="{
-        current: 0,
-        startCarousel() {
-            this.autoSlide = setInterval(() => {
-                this.current = (this.current + 1) % this.$refs.texts.children.length;
-            }, 1500);
-        },
-        stopCarousel() {
-            clearInterval(this.autoSlide);
-        }
-    }"
-        x-init="startCarousel()"
-        @mouseover="stopCarousel()"
-        @mouseleave="startCarousel()"
         class="relative h-10 w-full bg-indigo-600 text-white overflow-hidden rounded-lg mb-2"
-        x-ref="texts"
+        onmouseover="stopCarousel()"
+        onmouseleave="startCarousel()"
+        id="carousel-container"
     >
         @foreach($headerCarousels as $index => $headerCarousel)
             <!-- Carousel Text -->
             <div class="absolute inset-0 flex justify-center items-center text-center transition-opacity duration-500"
-                 x-show="current === {{ $index }}"
-                 x-transition:enter="transition-opacity"
-                 x-transition:leave="transition-opacity"
-                 x-transition:enter-start="opacity-0"
-                 x-transition:leave-end="opacity-0">
+                 data-index="{{ $index }}"
+                 style="opacity: {{ $index === 0 ? '1' : '0' }};">
                 <p class="text-sm font-bold">{{ $headerCarousel->header_carousel_text }}</p>
             </div>
         @endforeach
     </div>
-
     <section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply h-auto rounded-lg">
         <div class="px-4 mx-auto max-w-screen-xl text-center py-4 lg:py-5">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">{{ $heroSection->title ?? 'Not set' }}</h1>
@@ -118,78 +102,44 @@
 
 
         <h4 class="font-semibold">Member Activities</h4>
-        <div x-data="{
-    deposits: [
-        { name: 'John Doe', amount: '$150', time: '2 minutes ago' },
-        { name: 'Jane Smith', amount: '$200', time: '5 minutes ago' },
-        { name: 'Alice Johnson', amount: '$350', time: '10 minutes ago' },
-        { name: 'Bob Brown', amount: '$50', time: '15 minutes ago' },
-        { name: 'Charlie Davis', amount: '$100', time: '20 minutes ago' },
-    ],
-    newDeposit: { name: '', amount: '', time: '' },
-    maxDeposits: 5,
-    scrollSpeed: 1, // Speed of the scroll in pixels per frame
-    scrollPosition: 0,
-    listHeight: 0,
-    containerHeight: 0,
-    interval: null,
-
-    addDeposit() {
-        this.newDeposit = { name: `User ${Math.floor(Math.random() * 100)}`, amount: `$${Math.floor(Math.random() * 500 + 1)}`, time: 'Just now' };
-        this.deposits.push(this.newDeposit); // Add new deposit to the end
-        if (this.deposits.length > this.maxDeposits) {
-            this.deposits.shift(); // Maintain only the latest 5 deposits
-        }
-    },
-
-    startScroll() {
-        // Start scrolling once the DOM is ready
-        this.$nextTick(() => {
-            this.listHeight = this.$refs.list.scrollHeight; // Total height of the list (including duplicated items)
-            this.containerHeight = this.$refs.container.clientHeight; // Height of the visible container
-
-            // Scroll the list continuously
-            this.interval = setInterval(() => {
-                this.scrollPosition -= this.scrollSpeed;
-
-                // Reset scroll position when it reaches the end of the list
-                if (this.scrollPosition <= -this.listHeight / 2) {
-                    this.scrollPosition = 0;
-                }
-            }, 1000 / 60); // 60 FPS
-        });
-    },
-
-    stopScroll() {
-        clearInterval(this.interval);
-    }
-}" x-init="startScroll()" class="grid grid-cols-1">
+        <div class="grid grid-cols-1" id="deposit-container">
             <div>
                 <!-- Deposits List -->
-                <div x-ref="container" class="relative h-40 overflow-hidden">
-                    <div x-ref="list" class="absolute" :style="`transform: translateY(${scrollPosition}px)`">
+                <div id="scroll-container" class="relative h-40 overflow-hidden">
+                    <div id="scroll-list" class="absolute">
                         <!-- Original Deposits List -->
-                        <template x-for="(deposit, index) in deposits" :key="index">
-                            <div class="flex justify-between items-center p-2 border-b border-gray-200">
-                                <span class="font-medium" x-text="deposit.name"></span>
-                                <span class="text-green-500" x-text="deposit.amount"></span>
-                                <span class="text-gray-500 text-sm" x-text="deposit.time"></span>
-                            </div>
-                        </template>
-                        <!-- Duplicated Deposits List -->
-                        <template x-for="(deposit, index) in deposits" :key="index + '_duplicate'">
-                            <div class="flex justify-between items-center p-2 border-b border-gray-200">
-                                <span class="font-medium" x-text="deposit.name"></span>
-                                <span class="text-green-500" x-text="deposit.amount"></span>
-                                <span class="text-gray-500 text-sm" x-text="deposit.time"></span>
-                            </div>
-                        </template>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">John Doe</span>
+                            <span class="text-green-500">$150</span>
+                            <span class="text-gray-500 text-sm">2 minutes ago</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">Jane Smith</span>
+                            <span class="text-green-500">$200</span>
+                            <span class="text-gray-500 text-sm">5 minutes ago</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">Alice Johnson</span>
+                            <span class="text-green-500">$350</span>
+                            <span class="text-gray-500 text-sm">10 minutes ago</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">Bob Brown</span>
+                            <span class="text-green-500">$50</span>
+                            <span class="text-gray-500 text-sm">15 minutes ago</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                            <span class="font-medium">Charlie Davis</span>
+                            <span class="text-green-500">$100</span>
+                            <span class="text-gray-500 text-sm">20 minutes ago</span>
+                        </div>
+                        <!-- Duplicated Deposits List (for smooth scroll looping) -->
                     </div>
                 </div>
             </div>
 
             <!-- Button to simulate new deposits -->
-            <button @click="addDeposit()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
+            <button onclick="addDeposit()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
                 Add Deposit
             </button>
         </div>
@@ -236,5 +186,100 @@
             </div>
         </section>
     </div>
+    <script>
+        let current = 0;
+        let autoSlide;
 
+        function showSlide(index) {
+            const slides = document.querySelectorAll('#carousel-container > div');
+            slides.forEach((slide, idx) => {
+                slide.style.opacity = idx === index ? '1' : '0';
+            });
+        }
+
+        function startCarousel() {
+            autoSlide = setInterval(() => {
+                const slides = document.querySelectorAll('#carousel-container > div');
+                current = (current + 1) % slides.length;
+                showSlide(current);
+            }, 1500);
+        }
+
+        function stopCarousel() {
+            clearInterval(autoSlide);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            startCarousel();
+        });
+    </script>
+    <script>
+        const deposits = [
+            { name: 'John Doe', amount: '$150', time: '2 minutes ago' },
+            { name: 'Jane Smith', amount: '$200', time: '5 minutes ago' },
+            { name: 'Alice Johnson', amount: '$350', time: '10 minutes ago' },
+            { name: 'Bob Brown', amount: '$50', time: '15 minutes ago' },
+            { name: 'Charlie Davis', amount: '$100', time: '20 minutes ago' }
+        ];
+        const maxDeposits = 5;
+        const scrollSpeed = 1;
+        let scrollPosition = 0;
+        let interval;
+
+        // Add Deposit Function
+        function addDeposit() {
+            const newDeposit = {
+                name: `User ${Math.floor(Math.random() * 100)}`,
+                amount: `$${Math.floor(Math.random() * 500 + 1)}`,
+                time: 'Just now'
+            };
+            deposits.push(newDeposit);
+            if (deposits.length > maxDeposits) {
+                deposits.shift();
+            }
+            renderDeposits();
+        }
+
+        // Render Deposits Function
+        function renderDeposits() {
+            const scrollList = document.getElementById('scroll-list');
+            scrollList.innerHTML = deposits.concat(deposits).map(deposit => `
+            <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                <span class="font-medium">${deposit.name}</span>
+                <span class="text-green-500">${deposit.amount}</span>
+                <span class="text-gray-500 text-sm">${deposit.time}</span>
+            </div>
+        `).join('');
+        }
+
+        // Scroll Function
+        function startScroll() {
+            const scrollContainer = document.getElementById('scroll-container');
+            const scrollList = document.getElementById('scroll-list');
+
+            interval = setInterval(() => {
+                scrollPosition -= scrollSpeed;
+                scrollList.style.transform = `translateY(${scrollPosition}px)`;
+
+                // Reset scroll position for smooth loop
+                if (scrollPosition <= -scrollList.scrollHeight / 2) {
+                    scrollPosition = 0;
+                }
+            }, 1000 / 60);
+        }
+
+        function stopScroll() {
+            clearInterval(interval);
+        }
+
+        // Initialize Scroll and Render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDeposits();
+            startScroll();
+        });
+
+        // Stop scroll on mouseover and start on mouseleave
+        document.getElementById('scroll-container').addEventListener('mouseover', stopScroll);
+        document.getElementById('scroll-container').addEventListener('mouseleave', startScroll);
+    </script>
 </x-guest-layout>

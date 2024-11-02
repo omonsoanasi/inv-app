@@ -40,8 +40,9 @@
         <div class="flex items-center justify-between overflow-y-scroll text-gray-500 cursor-pointer space-x-3">
             <div
                 class="flex flex-col items-center justify-center w-20  h-20  bg-green-600 rounded-2xl text-green-600 shadow hover:shadow-md cursor-pointer mb-2 p-1 transition ease-in duration-300">
-                <a href="{{ auth()->check() ? 'https://tronscan.org/#/address/0x973182dB27E929e76BB35ff2C08aec6a90BB7614' : route('login') }}">
-                <p class="text-sm font-extrabold text-white mt-1">Recharge</p>
+                <!-- Recharge Link -->
+                <a href="#" onclick="openModal(event)" class="text-sm font-extrabold text-white mt-1">
+                    <p>Recharge</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-6 w-6 text-white" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>
                         <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195z"/>
@@ -49,6 +50,36 @@
                         <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567"/>
                     </svg>
                 </a>
+
+                <!-- Modal Structure -->
+                <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl relative">
+                        <!-- Close Button -->
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 absolute top-3 right-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
+                        <!-- Modal Content Container with Scrolling -->
+                        <div class="overflow-y-auto max-h-[75vh] p-4">
+                            <!-- TRC20 Address Iframe -->
+                            <iframe id="trc20Iframe" src="" class="w-full h-96 border-0"></iframe>
+
+                            <!-- Deposit Instructions -->
+                            <div class="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-gray-200">
+                                <h3 class="text-lg font-semibold mb-2">Deposit Instructions</h3>
+                                <p>Please send the required amount of USDT to the TRC20 address shown above. Ensure you are using a compatible wallet, and double-check the address before proceeding with the transfer.</p>
+                                <ul class="list-disc ml-5 mt-2">
+                                    <li>Use the exact TRC20 network to avoid any loss of funds.</li>
+                                    <li>Allow a few minutes for the transaction to reflect in your balance.</li>
+                                    <li>If you encounter any issues, please contact support.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
             <div
@@ -279,5 +310,25 @@
         // Stop scroll on mouseover and start on mouseleave
         document.getElementById('scroll-container').addEventListener('mouseover', stopScroll);
         document.getElementById('scroll-container').addEventListener('mouseleave', startScroll);
+    </script>
+    <script>
+        const isAuthenticated = {{ auth()->check() ? 'true' : 'false' }};
+
+        function openModal(event) {
+            event.preventDefault();
+            if (isAuthenticated) {
+                document.getElementById('trc20Iframe').src = 'https://tronscan.org/#/address/0x973182dB27E929e76BB35ff2C08aec6a90BB7614';
+                document.getElementById('modal').classList.remove('hidden');
+                document.getElementById('modal').classList.add('flex');
+            } else {
+                window.location.href = "{{ route('login') }}";
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modal').classList.remove('flex');
+            document.getElementById('trc20Iframe').src = '';
+        }
     </script>
 </x-app-layout>

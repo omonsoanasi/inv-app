@@ -61,44 +61,41 @@
                         maxlength="19"
                     />
                 </div>
-                <div class="my-3 flex flex-col sm:flex-row items-center">
-                    <div class="flex flex-col mb-2 sm:mr-4">
-                        <label for="" class="text-gray-700">Password</label>
-                        <input
-                            type="password"
-                            class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-                            placeholder="password"
-                            x-model="password"
-                            maxlength="19"
-                        />
-                    </div>
-
-                    <div class="flex flex-col mb-2 sm:mr-4">
-                        <label for="" class="text-gray-700">Fee</label>
-                        <input
-                            type="text"
-                            class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-                            placeholder=""
-                            x-model="fee"
-                            maxlength="19"
-                            disabled
-                        />
-                    </div>
-
-                    <div class="flex flex-col mb-2">
-                        <label for="" class="text-gray-700">Actual Amount Received</label>
-                        <input
-                            type="text"
-                            class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-                            placeholder=""
-                            x-model="amount_received"
-                            maxlength="19"
-                            disabled
-                        />
-                    </div>
+                <div class="my-3">
+                    <label for="" class="text-gray-700">Password</label>
+                    <input
+                        type="password"
+                        class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                        placeholder="password"
+                        x-model="password"
+                        maxlength="19"
+                    />
+                </div>
+                <div class="my-3">
+                    <label for="" class="text-gray-700">Fee</label>
+                    <input
+                        type="text"
+                        class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                        placeholder=""
+                        x-model="fee"
+                        maxlength="19"
+                        disabled
+                    />
+                </div>
+                <div class="my-3">
+                    <label for="" class="text-gray-700">Actual Amount Received</label>
+                    <input
+                        type="text"
+                        class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                        placeholder=""
+                        x-model="amount_received"
+                        maxlength="19"
+                        disabled
+                    />
                 </div>
             </div>
         </main>
+
 
         <footer class="mt-6 p-4">
             <button

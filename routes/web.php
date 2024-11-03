@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\AccountProfile;
+use App\Livewire\CustTeam;
 use App\Livewire\CustWithdraw;
 use App\Livewire\SystemAdministration\AccessControl;
 use App\Livewire\SystemAdministration\Cms;
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/cms', Cms::class)->name('cms');
     Route::get('/cust-withdraw', CustWithdraw::class)->name('cust-withdraw');
     Route::get('/account-profile', AccountProfile::class)->name('account-profile');
+    Route::get('/cust-team', CustTeam::class)->name('cust-team');
 });
 
 require __DIR__.'/auth.php';

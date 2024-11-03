@@ -79,8 +79,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div
                 class="flex flex-col items-center justify-center w-20  h-20  bg-yellow-600 rounded-2xl text-yellow-600  shadow hover:shadow-md cursor-pointer mb-2 p-1 transition ease-in duration-300">

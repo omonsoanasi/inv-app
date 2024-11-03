@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\AccountProfile;
+use App\Livewire\CustRecharge;
 use App\Livewire\CustTeam;
 use App\Livewire\CustWithdraw;
 use App\Livewire\SystemAdministration\AccessControl;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/app-dashboard', AdminDashboard::class)->name('app-dashboard');
     Route::get('/access-control', AccessControl::class)->name('access-control');
     Route::get('/cms', Cms::class)->name('cms');
+    Route::get('cust-recharge', CustRecharge::class)->name('cust-recharge');
     Route::get('/cust-withdraw', CustWithdraw::class)->name('cust-withdraw');
     Route::get('/account-profile', AccountProfile::class)->name('account-profile');
     Route::get('/cust-team', CustTeam::class)->name('cust-team');

@@ -41,7 +41,7 @@
             <div
                 class="flex flex-col items-center justify-center w-20  h-20  bg-green-600 rounded-2xl text-green-600 shadow hover:shadow-md cursor-pointer mb-2 p-1 transition ease-in duration-300">
                 <!-- Recharge Link -->
-                <a href="#" onclick="openModal(event)" class="text-sm font-extrabold text-white mt-1">
+                <a href="{{ route('cust-recharge') }}" class="text-sm font-extrabold text-white mt-1">
                     <p>Recharge</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-6 w-6 text-white" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>
@@ -65,7 +65,7 @@
                         <div class="overflow-y-auto max-h-[75vh] p-4">
                             <!-- TRC20 Address Iframe -->
                             <iframe id="trc20Iframe" src="" class="w-full h-96 border-0"></iframe>
-
+                            <span class="bg-gray-500">TBDrVr29z7XhXxBNrfBCVWnJQvwsqPutpc</span>
                             <!-- Deposit Instructions -->
                             <div class="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-gray-200">
                                 <h3 class="text-lg font-semibold mb-2">Deposit Instructions</h3>

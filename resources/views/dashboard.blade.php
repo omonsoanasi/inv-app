@@ -109,98 +109,12 @@
             </div>
         </div>
         <div class="bg-green-200 p-4 rounded-lg">
-            <!-- Button to Open Modal -->
-            <button onclick="openModal()" class="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-md">
+            <button class="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-5 w-5 mr-2" viewBox="0 0 16 16">
                     <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 0 1 5.51 15.1h-.548a1 1 0 0 1-.916-.599l-1.85-3.49-.202-.003A2.014 2.014 0 0 1 0 9V7a2.02 2.02 0 0 1 1.992-2.013 75 75 0 0 0 2.483-.075c3.043-.154 6.148-.849 8.525-2.199zm1 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0m-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233q.27.015.537.036c2.568.189 5.093.744 7.463 1.993zm-9 6.215v-4.13a95 95 0 0 1-1.992.052A1.02 1.02 0 0 0 1 7v2c0 .55.448 1.002 1.006 1.009A61 61 0 0 1 4 10.065m-.657.975 1.609 3.037.01.024h.548l-.002-.014-.443-2.966a68 68 0 0 0-1.722-.082z"/>
                 </svg>
                 Announcements
             </button>
-
-            <!-- Modal -->
-            <div id="announcementModal" class="fixed inset-0 hidden items-center justify-center z-50 bg-gray-800 bg-opacity-50" onclick="closeModal(event)">
-                <div class="bg-white w-full max-w-md p-6 rounded-lg shadow-lg overflow-y-auto max-h-[80vh]" onclick="event.stopPropagation()">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Announcements</h3>
-                        <button onclick="closeModal()" class="text-gray-600 hover:text-gray-800">&times;</button>
-                    </div>
-                    <div class="text-gray-700">
-                        <div class="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg space-y-6 text-gray-800">
-                            <!-- Header -->
-                            <div class="text-center">
-                                <h2 class="text-2xl font-bold text-blue-600">💥 A New Social Journey Awaits with PlanUSDT! 💥</h2>
-                                <p class="mt-2 text-gray-600">Dear friends, an exciting social challenge is waiting for you to join!</p>
-                            </div>
-
-                            <!-- Promotion Details -->
-                            <div class="space-y-4">
-                                <p>Promote platform projects on social platforms like Facebook, Twitter, Instagram, WhatsApp, TikTok, LinkedIn, and Snapchat.</p>
-                                <p>Create a team with <strong>50 A-level members</strong>, and receive <span class="text-green-500 font-semibold">VIP1</span> for free! High-performing teams will earn additional rewards for senior VIP privileges. Don’t miss this opportunity to become a pioneer in leading the trend! 🎉</p>
-                            </div>
-
-                            <!-- Wealth Opportunity Section -->
-                            <div class="border-t border-gray-200 pt-4">
-                                <h3 class="text-xl font-semibold text-gray-700">💰 PlanUSDT Cryptocurrency AI Trading Platform 💰</h3>
-                                <p class="mt-2 text-gray-600">Opening up new opportunities for wealth—safe, reliable, and guaranteed.</p>
-                            </div>
-
-                            <!-- Investment Opportunities -->
-                            <div class="space-y-4 mt-4">
-                                <p>In today’s fast-paced digital world, cryptocurrency has attracted global investors with its potential. PlanUSDT is committed to providing users with a simple, intuitive interface, enabling even newcomers to start effortlessly. Fast transaction speeds ensure you never miss an investment opportunity!</p>
-                                <p>Get started with an investment of just <strong>72 USDT</strong> for a chance to win up to <strong>2888 USDT</strong> in rewards.</p>
-                            </div>
-
-                            <!-- Quick Highlights -->
-                            <ul class="space-y-2 text-gray-700">
-                                <li>🎁 New users receive a daily income bonus of <strong>2.8 USDT</strong></li>
-                                <li>🔒 Minimum deposit: <strong>22 USDT (140 TRX)</strong>, minimum withdrawal: <strong>10 USDT</strong></li>
-                                <li>🎉 Invite friends to join and enjoy up to a <strong>15% recharge rebate</strong> with Level 3 membership</li>
-                                <li>💸 Store value investments support <strong>USDT/TRX</strong> currencies over the secure TRC20 network</li>
-                            </ul>
-
-                            <!-- VIP Levels and Income -->
-                            <div class="mt-6">
-                                <h4 class="text-lg font-semibold text-gray-700">💼 VIP Levels & Daily Income 💼</h4>
-                                <div class="grid grid-cols-2 gap-4 mt-4">
-                                    <div class="p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                                        <p class="font-bold text-lg text-gray-700">VIP0</p>
-                                        <p class="text-blue-600">2.8 USDT/day</p>
-                                    </div>
-                                    <div class="p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                                        <p class="font-bold text-lg text-gray-700">VIP1 (22 USDT)</p>
-                                        <p class="text-blue-600">10 USDT/day</p>
-                                    </div>
-                                    <!-- Repeat VIP sections up to VIP10 here -->
-                                </div>
-                            </div>
-
-                            <!-- Referral Bonus -->
-                            <div class="mt-6 border-t border-gray-200 pt-4">
-                                <h4 class="text-lg font-semibold text-gray-700">💸 Invitation Bonuses 💸</h4>
-                                <p class="text-gray-600 mt-2">Invite friends and earn up to <strong>15% recharge rebate</strong> from Level 3 members (10%-3%-2%).</p>
-                                <ul class="space-y-2 text-gray-700 mt-2">
-                                    <li>Team A: Deposit 1000 USDT, earn 100 USDT</li>
-                                    <li>Team B: Deposit 1000 USDT, earn 30 USDT</li>
-                                    <li>Team C: Deposit 1000 USDT, earn 20 USDT</li>
-                                </ul>
-                                <p class="text-gray-600 mt-2">Bonuses are instantly withdrawable! The more users you recommend, the higher the commission rewards.</p>
-                            </div>
-
-                            <!-- Closing Statement -->
-                            <div class="text-center mt-6">
-                                <p class="font-semibold text-gray-800">PlanUSDT’s cryptocurrency AI trading platform is here to help you start your wealth journey in a secure and reliable environment. Join us now!</p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="mt-4 text-right">
-                        <button onclick="closeModal()" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-md">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-
         </div>
         <h4 class="font-semibold">Activities</h4>
         <div class="grid grid-cols-2 gap-4 overflow-y-scroll w-full">
@@ -429,19 +343,6 @@
             document.getElementById('modal').classList.add('hidden');
             document.getElementById('modal').classList.remove('flex');
             document.getElementById('trc20Iframe').src = '';
-        }
-    </script>
-    <script>
-        function openModal() {
-            document.getElementById('announcementModal').classList.remove('hidden');
-            document.getElementById('announcementModal').classList.add('flex');
-        }
-
-        function closeModal(event) {
-            if (event.target.id === 'announcementModal' || event.type === 'click') {
-                document.getElementById('announcementModal').classList.remove('flex');
-                document.getElementById('announcementModal').classList.add('hidden');
-            }
         }
     </script>
 </x-app-layout>

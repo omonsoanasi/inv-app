@@ -1,8 +1,10 @@
 <div>
     <div class="flex items-center justify-between bg-blue-50 border border-blue-400 rounded-lg p-4 text-blue-800 shadow-md mb-4">
         <div class="flex items-center space-x-2">
-            <img src="{{ asset('img/tether-usdt-logo.png') }}" class="h-6 w-6">
-            <p><span class="font-semibold text-teal-600">TRC20-USDT</span> </p>
+            <a href="{{ route('trc20-usdt') }}" class="flex items-center space-x-1">
+                <img src="{{ asset('img/tether-usdt-logo.png') }}" class="h-6 w-6">
+                <span class="font-semibold text-teal-600">TRC20-USDT</span>
+            </a>
         </div>
         <button class="text-blue-600 hover:text-blue-800">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-5 w-5 text-teal-600" viewBox="0 0 16 16">
@@ -13,7 +15,7 @@
     <div class="flex items-center justify-between bg-blue-50 border border-blue-400 rounded-lg p-4 text-blue-800 shadow-md mb-4">
         <div class="flex items-center space-x-2">
             <img src="{{ asset('img/tether-usdt-logo.png') }}" class="h-6 w-6">
-            <p><span class="font-semibold">BEP-USDT</span> </p>
+            <p><span class="font-semibold">BEP20-USDT</span> </p>
         </div>
         <button class="text-blue-600 hover:text-blue-800">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-5 w-5" viewBox="0 0 16 16">

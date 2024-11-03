@@ -8,6 +8,7 @@ use App\Livewire\SystemAdministration\AccessControl;
 use App\Livewire\SystemAdministration\Cms;
 use App\Livewire\SystemAdministration\Dashboard\AdminDashboard;
 use App\Livewire\SystemAdministration\Dashboard\Index;
+use App\Livewire\Trc20Usdt;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/access-control', AccessControl::class)->name('access-control');
     Route::get('/cms', Cms::class)->name('cms');
     Route::get('cust-recharge', CustRecharge::class)->name('cust-recharge');
+    Route::get('/trc20-usdt', Trc20Usdt::class)->name('trc20-usdt');
     Route::get('/cust-withdraw', CustWithdraw::class)->name('cust-withdraw');
     Route::get('/account-profile', AccountProfile::class)->name('account-profile');
     Route::get('/cust-team', CustTeam::class)->name('cust-team');

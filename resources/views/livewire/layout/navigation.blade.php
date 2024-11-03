@@ -16,7 +16,7 @@ new class extends Component
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="sticky top-0 bg-[#6166DB] dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 z-50">
+<nav x-data="{ open: false }" class="sticky top-0 bg-green-500 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 z-50">
 
     <style>
         #google_translate_element .goog-logo-link {

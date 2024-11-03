@@ -20,12 +20,8 @@
             <span id="wallet-address" class="text-gray-800 font-bold text-sm text-center">
                 TBDrVr29z7XhXxBNrfBCVWnJQvwsqPutpc
             </span>
-            <button
-                onclick="copyToClipboard(event)"
-                onTouchEnd="copyToClipboard(event)"
-                class="flex items-center text-teal-600 hover:text-teal-500 transition duration-300"
-                title="Copy Address"
-                data-original="Copy">
+            <input type="text" id="wallet-address-input" value="TBDrVr29z7XhXxBNrfBCVWnJQvwsqPutpc" readonly class="hidden" />
+            <button onclick="copyToClipboardInput()" class="flex items-center text-teal-600 hover:text-teal-500 transition duration-300" title="Copy Address">
                 Copy
             </button>
         </div>
@@ -59,24 +55,15 @@
 </section>
 
 <script>
-    function copyToClipboard(event) {
-        // Select the wallet address text
-        const walletAddress = document.getElementById("wallet-address").textContent;
-
-        // Copy the text to the clipboard
-        navigator.clipboard.writeText(walletAddress).then(() => {
-            const button = event.target;
-
-            // Change the button text to "Copied"
-            button.textContent = "Copied";
-
-            // Reset the button text after a delay
-            setTimeout(() => {
-                button.textContent = button.getAttribute("data-original");
-            }, 2000); // Change the text back after 2 seconds
+    function copyToClipboardInput() {
+        const input = document.getElementById("wallet-address-input");
+        input.style.display = 'block'; // Show the input field
+        input.select(); // Select the input field's content
+        navigator.clipboard.writeText(input.value).then(() => {
+            alert("Copied to clipboard!");
+            input.style.display = 'none'; // Hide the input field after copying
         }).catch(err => {
             console.error('Failed to copy text: ', err);
-            alert("Copy failed! Please try manually.");
         });
     }
 </script>

@@ -20,7 +20,12 @@
             <span id="wallet-address" class="text-gray-800 font-bold text-sm text-center">
                 TBDrVr29z7XhXxBNrfBCVWnJQvwsqPutpc
             </span>
-            <button onclick="copyToClipboard(event)" class="flex items-center text-teal-600 hover:text-teal-500 transition duration-300" title="Copy Address" data-original="Copy">
+            <button
+                onclick="copyToClipboard(event)"
+                onTouchEnd="copyToClipboard(event)"
+                class="flex items-center text-teal-600 hover:text-teal-500 transition duration-300"
+                title="Copy Address"
+                data-original="Copy">
                 Copy
             </button>
         </div>
@@ -55,17 +60,24 @@
 
 <script>
     function copyToClipboard(event) {
+        // Select the wallet address text
         const walletAddress = document.getElementById("wallet-address").textContent;
 
+        // Copy the text to the clipboard
         navigator.clipboard.writeText(walletAddress).then(() => {
             const button = event.target;
+
+            // Change the button text to "Copied"
             button.textContent = "Copied";
 
+            // Reset the button text after a delay
             setTimeout(() => {
                 button.textContent = button.getAttribute("data-original");
-            }, 2000);
+            }, 2000); // Change the text back after 2 seconds
         }).catch(err => {
             console.error('Failed to copy text: ', err);
+            alert("Copy failed! Please try manually.");
         });
     }
 </script>
+

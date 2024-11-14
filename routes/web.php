@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\AccountProfile;
+use App\Livewire\ActivityPage;
 use App\Livewire\Bep20Usdt;
 use App\Livewire\Bnb;
 use App\Livewire\CustRecharge;
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('system-configs', SystemConfigs::class)->name('system-configs');
     Route::get('/Trc20usdt-instructions', Trc20Usdt::class)->name('Trc20usdt-instructions');
+
+    Route::get('activity-page', ActivityPage::class)->name('activity-page');
 });
 
 require __DIR__.'/auth.php';

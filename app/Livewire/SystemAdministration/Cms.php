@@ -181,7 +181,7 @@ class Cms extends Component
         return view('livewire.system-administration.cms', [
             'headerCarousels' => HeaderTextCarousel::latest()->paginate(4),
             'heroSection' => HeroSection::first(),
-            'activities' => Activity::latest()->paginate(4),
+            'activities' => Activity::orderBy('activity_commission','asc')->paginate(4),
             'regulatedBies' => RegulatedBy::latest()->paginate(4),
             'howTo' => HowTo::first(),
         ])->layout('layouts.admin');

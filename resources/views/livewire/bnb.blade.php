@@ -12,7 +12,7 @@
 
         <!-- Main content -->
         <div class="flex justify-center p-4 bg-gray-50">
-            <img src="{{ asset('img/trc20qrcode.png') }}" alt="TRC20 USDT QR Code" class="h-40 w-auto" />
+            <img src="{{ asset('img/bnb-address.png') }}" alt="TRC20 USDT QR Code" class="h-40 w-auto" />
         </div>
 
         <!-- Wallet address and copy button -->
@@ -24,8 +24,8 @@
 
             <!-- Address -->
             <div class="bg-white p-2 rounded-md flex items-center justify-between mb-4">
-                <span class="text-gray-600 text-sm break-all">{{ $trc20USDT->trc20_usdt_address }}</span>
-{{--                <button class="text-white bg-black px-2 py-1 text-xs rounded">Copy</button>--}}
+                <span class="text-gray-600 text-sm break-all">34q5mMThVkEkENN43NKSkEDnMPVsGkoXJ9</span>
+                {{-- <button class="text-white bg-black px-2 py-1 text-xs rounded">Copy</button> --}}
             </div>
 
             <!-- Button -->
@@ -33,30 +33,27 @@
                 Recharge completed
             </button>
         </div>
-
-
         <!-- Description Section -->
         <div class="bg-gray-100 border border-gray-200 p-6 rounded-lg text-gray-700">
-            <h3 class="text-lg font-semibold text-center mb-4">Deposit Instructions</h3>
+            <h3 class="text-lg font-semibold text-center mb-4">Recharge Instructions</h3>
 
             <ul class="space-y-3 text-sm leading-relaxed text-left">
                 <li class="flex items-start space-x-2">
                     <span class="text-green-500">1.</span>
-                    <p>Copy the address above or scan the QR code and select <strong class="text-blue-600">Tron (TRC20)</strong> network to deposit USDT.</p>
+                    <p>Copy the address above or scan the QR code and select the <strong class="text-blue-600">BNB Smart Chain (BEP20)</strong> network to recharge BNB.</p>
                 </li>
 
                 <li class="flex items-start space-x-2">
                     <span class="text-green-500">2.</span>
-                    <p>Do not deposit non-Tron (TRC20)-USDT assets. Funds will appear in your account in about <strong class="text-blue-600">1 to 3 minutes</strong>.</p>
+                    <p>Please do not recharge other non-BNB Smart Chain (BEP20)-BNB assets. The funds will arrive in your account in about <strong class="text-blue-600">1 to 3 minutes</strong> after recharging.</p>
                 </li>
 
                 <li class="flex items-start space-x-2">
                     <span class="text-green-500">3.</span>
-                    <p>If funds do not arrive shortly, please <strong class="text-blue-600">refresh the page</strong> or <strong class="text-blue-600">contact customer service</strong>.</p>
+                    <p>If it does not arrive for a long time, please <strong class="text-blue-600">refresh the page</strong> or <strong class="text-blue-600">contact customer service</strong>.</p>
                 </li>
             </ul>
         </div>
-
         <!-- Rating section -->
         <div class="flex justify-center space-x-1 py-2">
             <!-- Star SVGs for rating -->
@@ -75,10 +72,10 @@
             <svg fill="currentColor" viewBox="0 0 20 20" class="h-5 text-teal-600">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
             </svg>
-{{--            <!-- Repeat or adjust SVGs for full rating as needed -->--}}
-{{--            <svg fill="currentColor" viewBox="0 0 20 20" class="h-5 text-gray-200">--}}
-{{--                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>--}}
-{{--            </svg>--}}
+            {{--            <!-- Repeat or adjust SVGs for full rating as needed -->--}}
+            {{--            <svg fill="currentColor" viewBox="0 0 20 20" class="h-5 text-gray-200">--}}
+            {{--                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>--}}
+            {{--            </svg>--}}
         </div>
 
         <!-- Reservation button -->
@@ -91,27 +88,4 @@
         </button>
     </div>
 </section>
-
-<script>
-    function copyToClipboard(event) {
-        // Select the wallet address text
-        const walletAddress = document.getElementById("wallet-address").textContent;
-
-        // Copy the text to the clipboard
-        navigator.clipboard.writeText(walletAddress).then(() => {
-            const button = event.target;
-
-            // Change the button text to "Copied"
-            button.textContent = "Copied";
-
-            // Reset the button text after a delay
-            setTimeout(() => {
-                button.textContent = button.getAttribute("data-original");
-            }, 2000); // Change the text back after 2 seconds
-        }).catch(err => {
-            console.error('Failed to copy text: ', err);
-            alert("Copy failed! Please try manually.");
-        });
-    }
-</script>
 

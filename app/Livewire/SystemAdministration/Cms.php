@@ -29,6 +29,10 @@ class Cms extends Component
     public $activity_name;
     #[Rule('required')]
     public $activity_commission;
+    #[Rule('required')]
+    public $daily_tasks;
+    #[Rule('required')]
+    public $task_reset;
 
     //regulators
     #[Rule('required')]
@@ -46,6 +50,8 @@ class Cms extends Component
 
     public $heroSection;
     public $howTo;
+
+    public $editMode = false;
 
     public function mount()
     {
@@ -98,10 +104,21 @@ class Cms extends Component
         $activity = Activity::create([
             'activity_name' => $this->activity_name,
             'activity_commission' => $this->activity_commission,
+            'daily_tasks' => $this->daily_tasks,
+            'task_reset' => $this->task_reset,
         ]);
         $this->reset();
         session()->flash('message', 'Activity has been saved successfully.');
         return redirect()->route('cms');
+    }
+
+    public function editActivity($id)
+    {
+        dd($id);
+    }
+    public function updateActivity()
+    {
+        dd($this->activity_name);
     }
 
     public function deleteActivity($id)

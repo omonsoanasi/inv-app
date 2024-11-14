@@ -97,7 +97,7 @@
         <h4 class="font-semibold">Activities</h4>
         <div class="grid grid-cols-2 gap-4 overflow-y-scroll w-full">
             @foreach($activities as $activity)
-                <a href="{{ auth()->check() ? route('activity-page') : route('login') }}">
+                <a href="{{ auth()->check() ? route('activity-page', $activity->id) : route('login') }}">
                     <div
                         class="relative flex flex-col justify-between bg-white shadow-md rounded-3xl bg-cover text-gray-800 overflow-hidden cursor-pointer w-full object-cover object-center h-64 my-2"
                         style="background-image:url('https://images.unsplash.com/reserve/8T8J12VQxyqCiQFGa2ct_bahamas-atlantis.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')">

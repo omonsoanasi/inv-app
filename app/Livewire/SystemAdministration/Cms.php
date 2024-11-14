@@ -33,6 +33,8 @@ class Cms extends Component
     public $daily_tasks;
     #[Rule('required')]
     public $task_reset;
+    #[Rule('required')]
+    public $user_type;
 
     //regulators
     #[Rule('required')]
@@ -106,6 +108,7 @@ class Cms extends Component
             'activity_commission' => $this->activity_commission,
             'daily_tasks' => $this->daily_tasks,
             'task_reset' => $this->task_reset,
+            'user_type' => $this->user_type,
         ]);
         $this->reset();
         session()->flash('message', 'Activity has been saved successfully.');

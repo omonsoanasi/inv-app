@@ -97,38 +97,56 @@
         <h4 class="font-semibold">Activities</h4>
         <div class="grid grid-cols-2 gap-4 overflow-y-scroll w-full">
             @foreach($activities as $activity)
-                <a href="{{ auth()->check() ? route('activity-page', $activity->id) : route('login') }}">
-                    <div
-                        class="relative flex flex-col justify-between bg-white shadow-md rounded-3xl bg-cover text-gray-800 overflow-hidden cursor-pointer w-full object-cover object-center h-64 my-2"
-                        style="background-image:url('https://images.unsplash.com/reserve/8T8J12VQxyqCiQFGa2ct_bahamas-atlantis.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')">
-                        <div class="absolute bg-gradient-to-t from-green-400 to-blue-400 opacity-50 inset-0 z-0"></div>
-                        <div class="relative flex flex-row items-end h-72 w-full">
-                            <div class="absolute right-0 top-0 m-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="h-9 w-9 p-2 text-gray-200 hover:text-blue-400 rounded-full hover:bg-white transition ease-in duration-200"
-                                     viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
-                                </svg>
-                            </div>
-                            <div class="p-6 rounded-lg flex flex-col w-full z-10">
-                                <h4 class="mt-1 text-white text-xl font-semibold leading-tight ">{{ $activity->activity_name }}
-                                </h4>
-                                <div class="flex pt-4 text-sm text-gray-300">
-                                    <div class="flex items-center font-medium text-white">
-                                        ${{ number_format($activity->activity_commission,2) }} <span
-                                            class="text-gray-300 text-sm font-normal"></span>
+                @if($activity->user_type == 0)
+                    <a href="{{ auth()->check() ? route('activity-page', $activity->id) : route('login') }}">
+                        <div
+                            class="relative flex flex-col justify-between bg-white shadow-md rounded-3xl bg-cover text-gray-800 overflow-hidden cursor-pointer w-full object-cover object-center h-64 my-2"
+                            style="background-image:url('https://images.unsplash.com/reserve/8T8J12VQxyqCiQFGa2ct_bahamas-atlantis.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')">
+                            <div class="absolute bg-gradient-to-t from-green-400 to-blue-400 opacity-50 inset-0 z-0"></div>
+                            <div class="relative flex flex-row items-end h-72 w-full">
+                                <div class="absolute right-0 top-0 m-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="h-9 w-9 p-2 text-gray-200 hover:text-blue-400 rounded-full hover:bg-white transition ease-in duration-200"
+                                         viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+                                    </svg>
+                                </div>
+                                <div class="p-6 rounded-lg flex flex-col w-full z-10">
+                                    <h4 class="mt-1 text-white text-xl font-semibold leading-tight ">{{ $activity->activity_name }}</h4>
+                                    <div class="flex pt-4 text-sm text-gray-300">
+                                        <div class="flex items-center font-medium text-white">
+                                            ${{ number_format($activity->activity_commission,2) }}
+                                            <span class="text-gray-300 text-sm font-normal"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                @else
+                    <button onclick="showUpgradeAlert()" class="w-full h-full">
+                        <div
+                            class="relative flex flex-col justify-between bg-white shadow-md rounded-3xl bg-cover text-gray-800 overflow-hidden cursor-pointer w-full object-cover object-center h-64 my-2"
+                            style="background-image:url('https://images.unsplash.com/reserve/8T8J12VQxyqCiQFGa2ct_bahamas-atlantis.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')">
+                            <div class="absolute bg-gradient-to-t from-green-400 to-blue-400 opacity-50 inset-0 z-0"></div>
+                            <div class="relative flex flex-row items-end h-72 w-full">
+                                <div class="p-6 rounded-lg flex flex-col w-full z-10">
+                                    <h4 class="mt-1 text-white text-xl font-semibold leading-tight ">{{ $activity->activity_name }}</h4>
+                                    <div class="flex pt-4 text-sm text-gray-300">
+                                        <div class="flex items-center font-medium text-white">
+                                            ${{ number_format($activity->activity_commission,2) }}
+                                            <span class="text-gray-300 text-sm font-normal"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                @endif
             @endforeach
-
         </div>
-
-
+        
         <h4 class="font-semibold">Member Activities</h4>
         <div class="grid grid-cols-1" id="deposit-container">
             <div>
@@ -314,5 +332,16 @@
         // Stop scroll on mouseover and start on mouseleave
         document.getElementById('scroll-container').addEventListener('mouseover', stopScroll);
         document.getElementById('scroll-container').addEventListener('mouseleave', startScroll);
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function showUpgradeAlert() {
+            Swal.fire({
+                title: 'Upgrade Required',
+                text: 'You need an upgrade to access this activity.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+        }
     </script>
 </x-guest-layout>

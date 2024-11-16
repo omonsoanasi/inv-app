@@ -66,7 +66,11 @@
                             </svg>
                             <span class="ml-1">
                                 Task resets in:
-                            <span id="countdown" data-task-reset-time="{{ $accountBalance->task_reset_time->toIso8601String() }}"></span>
+                            <span id="countdown"
+                                  data-task-reset-time="{{ $accountBalance && $accountBalance->task_reset_time ? $accountBalance->task_reset_time->toIso8601String() : '' }}">
+                                {{ $accountBalance && $accountBalance->task_reset_time ? 'Calculating...' : 'No reset time available' }}
+                            </span>
+
                             </span>
                         </span>
 

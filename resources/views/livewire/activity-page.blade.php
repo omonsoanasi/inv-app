@@ -1,8 +1,17 @@
 @php
     use App\Models\AccountBalance;
+    use App\Models\CompletedTask;
+    use Carbon\Carbon;
+
     $accountBalance = AccountBalance::where('activity_id', $this->activity->id)->where('user_id', $this->user_id)->latest()->first();
     $accountBalances = \App\Models\AccountBalance::where('user_id',auth()->user()->id)->get();
-    $completedTasks = \App\Models\CompletedTask::where('user_id', auth()->user()->id)->get();
+    $completedTasks = CompletedTask::where('user_id', auth()->user()->id)->get();
+    $tasksInProgress = CompletedTask::with(['activity', 'accountBalance'])
+        ->get()
+        ->filter(function ($task) {
+            return optional($task->accountBalance)->task_reset_time > Carbon::now();
+        });
+
 @endphp
 <div>
     <div class="overflow-hidden bg-green-900">
@@ -154,20 +163,58 @@
             </svg>
             Completed
         </button>
-        <button class="tab-button p-4 rounded bg-white text-indigo-500 shadow-md flex items-center justify-center"
-                data-tab="settings">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M17 8h2a2 a=02 a=02 -00 -00 -00 -00 -00 -00 -00 -00"/>
-            </svg>
-            Settings
-        </button>
+{{--        <button class="tab-button p-4 rounded bg-white text-indigo-500 shadow-md flex items-center justify-center"--}}
+{{--                data-tab="settings">--}}
+{{--            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"--}}
+{{--                 stroke="currentColor">--}}
+{{--                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
+{{--                      d="M17 8h2a2 a=02 a=02 -00 -00 -00 -00 -00 -00 -00 -00"/>--}}
+{{--            </svg>--}}
+{{--            Settings--}}
+{{--        </button>--}}
     </div>
 
     <div class="shadow-xl border border-gray-100 font-light p-8 rounded text-gray-500 bg-white mt-2">
         <div id="in-progress" class="tab-content active">
             <!-- component -->
+            <div class="sm:px-6 w-full">
+                <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+                    <div class="mt-2 overflow-x-auto">
+                        <table class="w-full whitespace-nowrap">
+                            <tbody>
+                            @foreach($tasksInProgress as $taskInProgress)
+                                <tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
+                                    <td class="">
+                                        <div class="flex items-center pl-5">
+                                            <p class="text-base font-medium leading-none text-gray-700 mr-2">{{ $taskInProgress->activity->activity_name }}</p>
+                                        </div>
+                                    </td>
+                                    <td class="pl-5">
+                                        <div class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
+                                            </svg>
+                                            <p class="text-sm leading-none text-gray-600 ml-2">{{ number_format($taskInProgress->activity->activity_commission,2)  }}</p>
+                                        </div>
+                                    </td>
+                                    <td class="pl-5">
+                                        <button
+                                            class="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">
+                                            Completed :
+                                            {{ $taskInProgress->accountBalance->task_reset_time ?? 'not set' }}</button>
+                                    </td>
+                                </tr>
+                                <tr class="h-3"></tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="completed" class="tab-content hidden">
             <div class="sm:px-6 w-full">
                 <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
                     <div class="mt-2 overflow-x-auto">
@@ -182,14 +229,18 @@
                                     </td>
                                     <td class="pl-5">
                                         <div class="flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
-                                                <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
                                             </svg>
                                             <p class="text-sm leading-none text-gray-600 ml-2">{{ number_format($completedTask->activity->activity_commission,2)  }}</p>
                                         </div>
                                     </td>
                                     <td class="pl-5">
-                                        <button class="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">Completed :
+                                        <button
+                                            class="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">
+                                            Completed :
                                             {{ $completedTask->accountBalance->task_reset_time ?? 'not set' }}</button>
                                     </td>
                                 </tr>
@@ -201,12 +252,9 @@
                 </div>
             </div>
         </div>
-        <div id="completed" class="tab-content hidden">
-            Mustache cliche tempor, williamsburg carles vegan helvetica.
-        </div>
-        <div id="settings" class="tab-content hidden">
+{{--        <div id="settings" class="tab-content hidden">--}}
 
-        </div>
+{{--        </div>--}}
     </div>
 
     <script>

@@ -24,7 +24,8 @@
 
             <!-- Address -->
             <div class="bg-white p-2 rounded-md flex items-center justify-between mb-4">
-                <span class="text-gray-600 text-sm break-all">{{ $trc20USDT->trc20_usdt_address }}</span>
+                <span class="text-gray-600 text-sm break-all">TBDrVr29z7XhXxBNrfBCVWnJQvwsqPutpc</span>
+{{--                {{ $trc20USDT->trc20_usdt_address }}--}}
 {{--                <button class="text-white bg-black px-2 py-1 text-xs rounded">Copy</button>--}}
             </div>
 

@@ -23,7 +23,7 @@
                     <a href="#" class="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-gray-900 hover:bg-black hover:text-white">VIP - 0 <span class="font-bold">Save Money and Time</span></a>
                 </div>
                 <div class="flex justify-between items-center my-5 px-6">
-                    <a onclick="openModal(event)" class="font-extrabold text-green-500 hover:text-green-900 hover:bg-green-100 rounded transition duration-150 ease-in text-sm text-center w-full py-3 flex flex-col items-center">
+                    <a href="{{ route('cust-recharge') }}" class="font-extrabold text-green-500 hover:text-green-900 hover:bg-green-100 rounded transition duration-150 ease-in text-sm text-center w-full py-3 flex flex-col items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-12 w-12 mb-1" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>
                             <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195z"/>
@@ -33,33 +33,7 @@
                         <span>Recharge</span>
                     </a>
                     <!-- Modal Structure -->
-                    <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
-                        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl relative">
-                            <!-- Close Button -->
-                            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 absolute top-3 right-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
 
-                            <!-- Modal Content Container with Scrolling -->
-                            <div class="overflow-y-auto max-h-[75vh] p-4">
-                                <!-- TRC20 Address Iframe -->
-                                <iframe id="trc20Iframe" src="" class="w-full h-96 border-0"></iframe>
-
-                                <!-- Deposit Instructions -->
-                                <div class="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-gray-200">
-                                    <h3 class="text-lg font-semibold mb-2">Deposit Instructions</h3>
-                                    <p>Please send the required amount of USDT to the TRC20 address shown above. Ensure you are using a compatible wallet, and double-check the address before proceeding with the transfer.</p>
-                                    <ul class="list-disc ml-5 mt-2">
-                                        <li>Use the exact TRC20 network to avoid any loss of funds.</li>
-                                        <li>Allow a few minutes for the transaction to reflect in your balance.</li>
-                                        <li>If you encounter any issues, please contact support.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <a href="{{ route('cust-withdraw') }}" class="font-extrabold text-green-500 hover:text-green-900 hover:bg-green-100 rounded transition duration-150 ease-in text-sm text-center w-full py-3 flex flex-col items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-12 w-12" viewBox="0 0 16 16">
                             <path d="m.5 3 .04.87a2 2 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2m5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19q-.362.002-.683.12L1.5 2.98a1 1 0 0 1 1-.98z"/>

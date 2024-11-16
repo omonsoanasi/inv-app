@@ -1,3 +1,6 @@
+@php
+    $accountBalance = \App\Models\AccountBalance::where('user_id', auth()->user()->id)->latest()->first();
+@endphp
 <div class="m-4">
     <div class="credit-card w-full sm:w-auto shadow-lg mx-auto rounded-xl bg-white" x-data="creditCard">
         <header class="flex flex-col justify-center items-center">
@@ -12,7 +15,7 @@
                     <p class="text-lg font-semibold">WITHDRAWAL ACCOUNT</p>
                     <p class="text-lg text-sm text-red-400">24 hours withdrawal</p>
                 </div>
-                <div class="mt-8 text-2xl font-semibold tracking-widest">0.00</div>
+                <div class="mt-8 text-2xl font-semibold tracking-widest">{{ number_format(optional($accountBalance)->total_amount ?? 0, 2) }}</div>
                 <div class="flex justify-between items-center mt-6">
                     <div>
                         <p class="text-xs">USDT</p>

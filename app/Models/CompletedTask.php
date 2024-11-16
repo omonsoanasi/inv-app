@@ -20,4 +20,8 @@ class CompletedTask extends Model
     {
         return $this->belongsTo(Activity::class);
     }
+    public function accountBalance():BelongsTo
+    {
+        return $this->belongsTo(AccountBalance::class);
+    }
 }

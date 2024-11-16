@@ -1,6 +1,8 @@
 @php
     use App\Models\AccountBalance;
     $accountBalance = AccountBalance::where('activity_id', $this->activity->id)->where('user_id', $this->user_id)->latest()->first();
+    $accountBalances = \App\Models\AccountBalance::where('user_id',auth()->user()->id)->get();
+    $completedTasks = \App\Models\CompletedTask::where('user_id', auth()->user()->id)->get();
 @endphp
 <div>
     <div class="overflow-hidden bg-green-900">
@@ -81,8 +83,14 @@
                                     d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
                             </svg>
                             <span class="ml-1">Today's remaining tasks:</span>
+                           @if(!$accountBalance)
+                                1
+                            @elseif($accountBalance->task_reset_time && $accountBalance->task_reset_time->isPast())
+                                1
+                            @else
+                                0
+                            @endif
                         </span>
-
                         <!-- Buttons Section -->
                         <div class="w-full mt-4 flex justify-center space-x-4">
 
@@ -99,10 +107,23 @@
                                     {{ number_format($activity->activity_commission,2) }}
                                 </span>
                             </div>
-                            <button wire:click="completeTask"
-                                    class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">
-                                Complete Task
-                            </button>
+                            @if(!$accountBalance)
+                                <!-- No AccountBalance: Show the button -->
+                                <button wire:click="completeTask"
+                                        class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">
+                                    Complete Task
+                                </button>
+                            @elseif($accountBalance->task_reset_time && $accountBalance->task_reset_time->isPast())
+                                <!-- AccountBalance exists, and task_reset_time has passed: Show the button -->
+                                <button wire:click="completeTask"
+                                        class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">
+                                    Complete Task
+                                </button>
+                            @else
+                                <!-- AccountBalance exists, but task_reset_time has not passed: Show message -->
+                                <p class="text-gray-500">Tasks for the day are completed. Check back later.</p>
+                            @endif
+
                             {{--                            <button class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded">--}}
                             {{--                                Reset Task--}}
                             {{--                            </button>--}}
@@ -144,10 +165,41 @@
         </button>
     </div>
 
-    <div class="shadow-xl border border-gray-100 font-light p-8 rounded text-gray-500 bg-white mt-6">
+    <div class="shadow-xl border border-gray-100 font-light p-8 rounded text-gray-500 bg-white mt-2">
         <div id="in-progress" class="tab-content active">
-            Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-            master cleanse.
+            <!-- component -->
+            <div class="sm:px-6 w-full">
+                <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+                    <div class="mt-2 overflow-x-auto">
+                        <table class="w-full whitespace-nowrap">
+                            <tbody>
+                            @foreach($completedTasks as $completedTask)
+                                <tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
+                                    <td class="">
+                                        <div class="flex items-center pl-5">
+                                            <p class="text-base font-medium leading-none text-gray-700 mr-2">{{ $completedTask->activity->activity_name }}</p>
+                                        </div>
+                                    </td>
+                                    <td class="pl-5">
+                                        <div class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                                                <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
+                                            </svg>
+                                            <p class="text-sm leading-none text-gray-600 ml-2">{{ number_format($completedTask->activity->activity_commission,2)  }}</p>
+                                        </div>
+                                    </td>
+                                    <td class="pl-5">
+                                        <button class="py-3 px-3 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded">Completed :
+                                            {{ $completedTask->accountBalance->task_reset_time ?? 'not set' }}</button>
+                                    </td>
+                                </tr>
+                                <tr class="h-3"></tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="completed" class="tab-content hidden">
             Mustache cliche tempor, williamsburg carles vegan helvetica.

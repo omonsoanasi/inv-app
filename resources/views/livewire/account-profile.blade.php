@@ -11,7 +11,7 @@
 
             <div class="mt-16">
                 <h1 class="font-bold text-center text-3xl text-gray-900">Hello, {{ auth()->user()->name }}</h1>
-                <p class="text-center text-sm text-gray-400 font-bold">Total Balance: {{ number_format($accountBalance->total_amount,2) }} (USDT)</p>
+                <p class="text-center text-sm text-gray-400 font-bold">Total Balance: {{ number_format($accountBalance->total_amount,2) ?? 0.00 }} (USDT)</p>
                 <p>
                         <span>
 {{--                            here we go--}}

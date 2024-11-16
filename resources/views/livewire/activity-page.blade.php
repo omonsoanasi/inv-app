@@ -66,11 +66,10 @@
                             </svg>
                             <span class="ml-1">
                                 Task resets in:
-                            <span id="countdown"
-                                  data-task-reset-time="{{ $accountBalance && $accountBalance->task_reset_time ? $accountBalance->task_reset_time->toIso8601String() : '' }}">
-                                {{ $accountBalance && $accountBalance->task_reset_time ? 'Calculating...' : 'No reset time available' }}
-                            </span>
-
+                                <span id="countdown"
+                                      data-task-reset-time="{{ $accountBalance && $accountBalance->task_reset_time ? $accountBalance->task_reset_time->toIso8601String() : '' }}">
+                                    {{ $accountBalance && $accountBalance->task_reset_time ? 'Calculating...' : 'Complete task first' }}
+                                </span>
                             </span>
                         </span>
 
@@ -185,11 +184,19 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const countdownElement = document.getElementById('countdown');
-            const resetTime = new Date(countdownElement.dataset.taskResetTime).getTime();
+            const resetTime = countdownElement.dataset.taskResetTime;
+
+            // If task reset time is null or empty
+            if (!resetTime) {
+                countdownElement.textContent = "Complete task first";
+                return; // Stop further processing
+            }
+
+            const resetTimestamp = new Date(resetTime).getTime();
 
             function updateCountdown() {
                 const now = new Date().getTime();
-                const timeDifference = resetTime - now;
+                const timeDifference = resetTimestamp - now;
 
                 if (timeDifference <= 0) {
                     countdownElement.textContent = "Task reset time reached!";
@@ -203,11 +210,8 @@
                 countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
             }
 
-            // Update countdown every second
             setInterval(updateCountdown, 1000);
-
-            // Initialize countdown on page load
-            updateCountdown();
+            updateCountdown(); // Initialize countdown on page load
         });
     </script>
 </div>

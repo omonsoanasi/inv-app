@@ -3,40 +3,55 @@
 @endphp
 <div class="m-4">
     <div class="credit-card w-full sm:w-auto shadow-lg mx-auto rounded-xl bg-white" x-data="creditCard">
-        <header class="flex flex-col justify-center items-center">
+        <header class="flex flex-col justify-center items-center p-4 space-y-4">
+            <!-- Front Side -->
             <div
-                class="relative w-full h-56 bg-gradient-to-r from-green-200 to-green-700 rounded-lg shadow-md p-5 text-white"
+                class="relative w-full h-64 bg-gradient-to-r from-green-300 to-green-600 rounded-xl shadow-lg p-6 text-white"
                 x-show="card === 'front'"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform scale-90"
                 x-transition:enter-end="opacity-100 transform scale-100"
             >
+                <!-- Header -->
                 <div class="flex justify-between items-center">
-                    <p class="text-lg font-semibold">WITHDRAWAL ACCOUNT</p>
-                    <p class="text-lg text-sm text-red-400">24 hours withdrawal</p>
+                    <p class="text-xl font-bold tracking-wide">WITHDRAWAL ACCOUNT</p>
+                    <p class="text-sm text-red-300 font-medium">24 hours withdrawal</p>
                 </div>
-                <div class="mt-8 text-2xl font-semibold tracking-widest">{{ number_format(optional($accountBalance)->total_amount ?? 0, 2) }}</div>
-                <div class="flex justify-between items-center mt-6">
+
+                <!-- Balance -->
+                <div class="mt-6 text-3xl font-bold tracking-wide">
+                   $ {{ number_format(optional($accountBalance)->total_amount ?? 0, 2) }}
+                </div>
+
+                <!-- Details -->
+                <div class="flex justify-between items-center mt-8">
                     <div>
-                        <p class="text-xs">USDT</p>
-                        <div class="text-lg">
-                            <span>Total Balance</span>
-                        </div>
+                        <p class="text-xs font-light uppercase">Currency</p>
+                        <div class="text-lg font-semibold">USDT</div>
                     </div>
-                    <p class="text-lg font-semibold">Withdrawal Method:TRC20-USDT</p>
+                    <div class="text-right">
+                        <p class="text-xs font-light uppercase">Withdrawal Method</p>
+                        <p class="text-lg font-semibold">TRC20-USDT</p>
+                    </div>
                 </div>
             </div>
 
+            <!-- Back Side -->
             <div
-                class="relative w-full h-56 bg-gray-800 rounded-lg shadow-md p-5 text-white"
+                class="relative w-full h-64 bg-gray-900 rounded-xl shadow-lg p-6 text-white"
                 x-show="card === 'back'"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform scale-90"
                 x-transition:enter-end="opacity-100 transform scale-100"
             >
-                <div class="bg-gray-700 h-10 w-full mt-4"></div>
-                <div class="flex justify-end mt-6">
-                    <p class="bg-gray-100 text-gray-800 p-2 rounded text-lg" x-text="securityCode !== '' ? securityCode : 'XXX'"></p>
+                <!-- Top Placeholder -->
+                <div class="bg-gray-700 h-10 w-full rounded-md"></div>
+
+                <!-- Security Code -->
+                <div class="flex justify-end mt-8">
+                    <p class="bg-gray-200 text-gray-900 py-2 px-4 rounded-lg text-lg font-medium">
+                        <span x-text="securityCode !== '' ? securityCode : 'XXX'"></span>
+                    </p>
                 </div>
             </div>
         </header>

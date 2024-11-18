@@ -43,104 +43,79 @@
                 </div>
             </div>
         @endif
-        <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-            <div class="flex flex-col items-center justify-between xl:flex-row">
-                <div class="w-full mb-12 xl:pr-16 xl:mb-0">
-                    <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-                        <span class="text-teal-accent-400">PlanUSDT</span>
+            <div class="px-4 py-8 mx-auto max-w-md bg-gray-100 rounded-lg shadow-lg">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <span class="text-teal-500">PlanUSDT</span>
                     </h2>
-                    <div class="p-4 flex justify-center items-center flex-wrap">
-                        <!-- Today's Tasks -->
-                        <span
-                            class="inline-flex items-center m-2 px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm font-semibold text-gray-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 fill-current"
-                                 viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                      d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"/>
-                                <path
-                                    d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z"/>
-                                <path fill-rule="evenodd"
-                                      d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"/>
-                            </svg>
-                            <span class="ml-1">Today's Tasks : {{ $activity->daily_tasks }}</span>
-                        </span>
-
-                        <!-- Task Reset Timer -->
-                        <span
-                            class="inline-flex items-center m-2 px-3 py-1 bg-green-200 hover:bg-green-300 rounded-full text-sm font-semibold text-green-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-4 w-4 fill-current"
-                                 viewBox="0 0 16 16">
-                                <path
-                                    d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9z"/>
-                                <path
-                                    d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1zm1.038 3.018a6 6 0 0 1 .924 0 6 6 0 1 1-.924 0M0 3.5c0 .753.333 1.429.86 1.887A8.04 8.04 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5M13.5 1c-.753 0-1.429.333-1.887.86a8.04 8.04 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1"/>
-                            </svg>
-                            <span class="ml-1">
-                                Task resets in:
-                                <span id="countdown"
-                                      data-task-reset-time="{{ $accountBalance && $accountBalance->task_reset_time ? $accountBalance->task_reset_time->toIso8601String() : '' }}">
-                                    {{ $accountBalance && $accountBalance->task_reset_time ? 'Calculating...' : 'Complete task first' }}
-                                </span>
-                            </span>
-                        </span>
-
-                        <!-- Remaining Tasks -->
-                        <span
-                            class="inline-flex items-center m-2 px-3 py-1 bg-blue-200 hover:bg-blue-300 rounded-full text-sm font-semibold text-blue-600">
-                            <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M0 0h24v24H0V0z" fill="none"/><path
-                                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
-                            </svg>
-                            <span class="ml-1">Today's remaining tasks:</span>
-                           @if(!$accountBalance)
-                                1
-                            @elseif($accountBalance->task_reset_time && $accountBalance->task_reset_time->isPast())
-                                1
-                            @else
-                                0
-                            @endif
-                        </span>
-                        <!-- Buttons Section -->
-                        <div class="w-full mt-4 flex justify-center space-x-4">
-
-                            <!-- Information label -->
-                            <div
-                                class="flex items-center rounded-full py-1 px-4 font-medium border text-green-900 bg-green-100 border-green-300">
-                                Order Commission :
-                                <span class="flex items-center ml-2 font-bold">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-5 w-5 mr-1"
-                                         viewBox="0 0 16 16">
-                                        <path
-                                            d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
-                                    </svg>
-                                    {{ number_format($activity->activity_commission,2) }}
-                                </span>
-                            </div>
-                            @if(!$accountBalance)
-                                <!-- No AccountBalance: Show the button -->
-                                <button wire:click="completeTask"
-                                        class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">
-                                    Complete Task
-                                </button>
-                            @elseif($accountBalance->task_reset_time && $accountBalance->task_reset_time->isPast())
-                                <!-- AccountBalance exists, and task_reset_time has passed: Show the button -->
-                                <button wire:click="completeTask"
-                                        class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">
-                                    Complete Task
-                                </button>
-                            @else
-                                <!-- AccountBalance exists, but task_reset_time has not passed: Show message -->
-                                <p class="text-gray-500">Tasks for the day are completed. Check back later.</p>
-                            @endif
-
-                            {{--                            <button class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded">--}}
-                            {{--                                Reset Task--}}
-                            {{--                            </button>--}}
-                        </div>
+                </div>
+                <div class="space-y-4">
+                    <!-- Today's Tasks -->
+                    <div class="flex items-center justify-between bg-gray-200 p-3 rounded-lg">
+            <span class="flex items-center text-gray-600 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 mr-1" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"/>
+                    <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z"/>
+                </svg>
+                Today's Tasks: {{ $activity->daily_tasks }}
+            </span>
+                    </div>
+                    <!-- Task Reset Timer -->
+                    <div class="flex items-center justify-between bg-green-200 p-3 rounded-lg">
+            <span class="flex items-center text-green-600 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-4 w-4 mr-1" viewBox="0 0 16 16">
+                    <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9z"/>
+                </svg>
+                Task resets in:
+                <span id="countdown"
+                      data-task-reset-time="{{ $accountBalance && $accountBalance->task_reset_time ? $accountBalance->task_reset_time->toIso8601String() : '' }}">
+                    {{ $accountBalance && $accountBalance->task_reset_time ? 'Calculating...' : 'Complete task first' }}
+                </span>
+            </span>
+                    </div>
+                    <!-- Remaining Tasks -->
+                    <div class="flex items-center justify-between bg-blue-200 p-3 rounded-lg">
+            <span class="flex items-center text-blue-600 text-sm">
+                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path
+                        d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+                </svg>
+                Today's remaining tasks:
+                @if(!$accountBalance)
+                    1
+                @elseif($accountBalance->task_reset_time && $accountBalance->task_reset_time->isPast())
+                    1
+                @else
+                    0
+                @endif
+            </span>
                     </div>
                 </div>
+                <!-- Buttons Section -->
+                <div class="mt-6 flex flex-col space-y-4">
+                    <div class="flex items-center justify-between text-green-900 bg-green-100 border border-green-300 rounded-lg p-3">
+                        <span class="font-medium">Order Commission:</span>
+                        <span class="flex items-center font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-5 w-5 mr-1"
+                     viewBox="0 0 16 16">
+                    <path
+                        d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
+                </svg>
+                {{ number_format($activity->activity_commission,2) }}
+            </span>
+                    </div>
+                    @if(!$accountBalance || ($accountBalance->task_reset_time && $accountBalance->task_reset_time->isPast()))
+                        <button wire:click="completeTask"
+                                class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg">
+                            Complete Task
+                        </button>
+                    @else
+                        <p class="text-gray-500 text-center">Tasks for the day are completed. Check back later.</p>
+                    @endif
+                </div>
             </div>
-        </div>
     </div>
 
     <div class="grid grid-cols-3 gap-5">

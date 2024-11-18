@@ -4,6 +4,24 @@
 <div class="m-4">
     <div class="credit-card w-full sm:w-auto shadow-lg mx-auto rounded-xl bg-white" x-data="creditCard">
         <header class="flex flex-col justify-center items-center p-4 space-y-4">
+            <!-- Notification -->
+            <div
+                class="w-full bg-yellow-200 text-yellow-800 p-3 rounded-lg shadow-md text-center text-sm font-medium"
+                x-data="{ show: true }"
+                x-show="show"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 transform scale-90"
+                x-transition:enter-end="opacity-100 transform scale-100"
+            >
+                🚨 The minimum withdrawal amount is <strong>$10.00</strong>. Please ensure your balance meets this requirement.
+                <button
+                    class="ml-2 text-yellow-800 font-bold underline hover:text-yellow-600"
+                    @click="show = false"
+                >
+                    Dismiss
+                </button>
+            </div>
+
             <!-- Front Side -->
             <div
                 class="relative w-full h-64 bg-gradient-to-r from-green-300 to-green-600 rounded-xl shadow-lg p-6 text-white"
@@ -20,7 +38,7 @@
 
                 <!-- Balance -->
                 <div class="mt-6 text-3xl font-bold tracking-wide">
-                   $ {{ number_format(optional($accountBalance)->total_amount ?? 0, 2) }}
+                    $ {{ number_format(optional($accountBalance)->total_amount ?? 0, 2) }}
                 </div>
 
                 <!-- Details -->

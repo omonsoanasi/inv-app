@@ -46,67 +46,70 @@
             {{ $slot }}
         </main>
 
-        <div id="app" class="bg-gray-100 overflow-hidden">
-            <!-- Modal trigger -->
-            <button
-                @click="showModal = !showModal"
-                class="fixed bottom-32 right-5 bg-indigo-500 hover:bg-indigo-600 focus:outline-none rounded-md px-6 py-3 text-white transition duration-500 ease-in-out">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6" viewBox="0 0 16 16">
-                    <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5" />
-                </svg>
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full border-4 opacity-50"></span>
-            </button>
-            <!-- ./Modal trigger -->
+{{--        <div id="app" class="bg-gray-100 overflow-hidden">--}}
+{{--            <!-- Modal trigger -->--}}
+{{--            <button--}}
+{{--                @click="showModal = !showModal"--}}
+{{--                class="fixed bottom-32 right-5 bg-indigo-500 hover:bg-indigo-600 focus:outline-none rounded-md px-6 py-3 text-white transition duration-500 ease-in-out">--}}
+{{--                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6" viewBox="0 0 16 16">--}}
+{{--                    <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5" />--}}
+{{--                </svg>--}}
+{{--                <span class="animate-ping absolute inline-flex h-full w-full rounded-full border-4 opacity-50"></span>--}}
+{{--            </button>--}}
+{{--            <!-- ./Modal trigger -->--}}
 
-            <transition name="custom" enter-active-class="animate__animated animate__bounceInDown" leave-active-class="animate__animated animate__bounceOutUp">
-                <!-- Modal -->
-                <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
-                    <div class="w-11/12 lg:w-full max-w-xl mx-auto bg-white shadow-2xl rounded-md overflow-hidden">
+{{--            <transition name="custom" enter-active-class="animate__animated animate__bounceInDown" leave-active-class="animate__animated animate__bounceOutUp">--}}
+{{--                <!-- Modal -->--}}
+{{--                <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">--}}
+{{--                    <div class="w-11/12 lg:w-full max-w-xl mx-auto bg-white shadow-2xl rounded-md overflow-hidden">--}}
 
-                        <!-- Modal Header -->
-                        <div class="p-6 border-b-4 border-gray-200 text-lg font-bold text-indigo-400 text-center">
-                            Online Service
-                        </div>
+{{--                        <!-- Modal Header -->--}}
+{{--                        <div class="p-6 border-b-4 border-gray-200 text-lg font-bold text-indigo-400 text-center">--}}
+{{--                            Online Service--}}
+{{--                        </div>--}}
 
-                        <!-- Modal Content -->
-                        <div class="p-6 text-center">
-                            <div class="text-lg font-semibold mb-4">
-                                Choose your preferred online customer service contact method
-                            </div>
+{{--                        <!-- Modal Content -->--}}
+{{--                        <div class="p-6 text-center">--}}
+{{--                            <div class="text-lg font-semibold mb-4">--}}
+{{--                                Choose your preferred online customer service contact method--}}
+{{--                            </div>--}}
 
-                            <!-- Option 1: Telegram Chat -->
-                            <a href="https://t.me/OMONSO" target="_blank" class="flex items-center justify-between w-full p-3 mb-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
-                                <span>PlanUSDT Customer Service</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-6 h-6" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
-                                </svg>
-                            </a>
+{{--                            <!-- Option 1: Telegram Chat -->--}}
+{{--                            <div class="flex items-center justify-between w-full p-3 mb-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">--}}
+{{--                                <span>PlanUSDT Customer Service</span>--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-6 h-6" viewBox="0 0 16 16">--}}
+{{--                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>--}}
+{{--                                </svg>--}}
+{{--                            </div>--}}
 
-                            <!-- Option 2: Chat in App -->
-                            <button class="w-full p-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
-                                Chat in the App
-                            </button>
-                        </div>
+{{--                            <!-- Option 2: Chat in App -->--}}
+{{--                            <button class="w-full p-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">--}}
+{{--                                Chat in the App--}}
+{{--                            </button>--}}
+{{--                            <form>--}}
 
-                        <!-- Modal Footer -->
-                        <div class="border-t-4 border-gray-200 p-6 flex justify-end">
-                            <button @click="showModal = false" class="bg-green-400 hover:bg-green-500 focus:outline-none transition px-4 py-2 rounded-md text-white duration-500 ease-in-out">
-                                Close
-                            </button>
-                        </div>
+{{--                            </form>--}}
+{{--                        </div>--}}
 
-                    </div>
-                </div>
+{{--                        <!-- Modal Footer -->--}}
+{{--                        <div class="border-t-4 border-gray-200 p-6 flex justify-end">--}}
+{{--                            <button @click="showModal = false" class="bg-green-400 hover:bg-green-500 focus:outline-none transition px-4 py-2 rounded-md text-white duration-500 ease-in-out">--}}
+{{--                                Close--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
 
-                <!-- ./Modal -->
-            </transition>
+{{--                    </div>--}}
+{{--                </div>--}}
 
-            <transition name="custom" enter-active-class="animate__animated animate__fadeIn" leave-active-class="animate__animated animate__fadeOut">
-                <!-- Overlay -->
-                <div v-if="showModal" class="bg-gray-700 bg-opacity-50 fixed inset-0 transition duration-500 ease-in-out z-30"></div>
-                <!-- ./Overlay -->
-            </transition>
-        </div>
+{{--                <!-- ./Modal -->--}}
+{{--            </transition>--}}
+
+{{--            <transition name="custom" enter-active-class="animate__animated animate__fadeIn" leave-active-class="animate__animated animate__fadeOut">--}}
+{{--                <!-- Overlay -->--}}
+{{--                <div v-if="showModal" class="bg-gray-700 bg-opacity-50 fixed inset-0 transition duration-500 ease-in-out z-30"></div>--}}
+{{--                <!-- ./Overlay -->--}}
+{{--            </transition>--}}
+{{--        </div>--}}
 
 
         <!-- Fixed Buttons Section -->

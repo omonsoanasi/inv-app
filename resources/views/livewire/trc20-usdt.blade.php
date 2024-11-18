@@ -30,7 +30,7 @@
             </div>
 
             <!-- Button -->
-            <button class="bg-green-500 text-white w-full py-2 rounded-full font-semibold">
+            <button wire:click.prevent="completeTrc20Recharge" class="bg-green-500 text-white w-full py-2 rounded-full font-semibold">
                 Recharge completed
             </button>
         </div>

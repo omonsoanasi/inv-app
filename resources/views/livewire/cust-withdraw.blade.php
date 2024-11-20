@@ -78,13 +78,20 @@
             <h1 class="text-xl font-semibold text-gray-700 text-center">Details</h1>
             <div>
                 <div class="my-3">
-                    <input
-                        type="text"
-                        class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-                        placeholder="Quota 10.000 - 1000000.00"
-                        maxlength="22"
-                        x-model="cardholder"
-                    />
+                    <div x-data="{ cardholder: '', error: '' }">
+                        <!-- Input Field -->
+                        <input
+                            type="text"
+                            class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                            placeholder="Quota 10.00 - 1000000.00"
+                            maxlength="22"
+                            x-model="cardholder"
+                            @input="validateAmount"
+                        />
+
+                        <!-- Error Message -->
+                        <p x-show="error" class="text-red-600 text-sm mt-2" x-text="error"></p>
+                    </div>
                 </div>
                 <div class="my-3">
                     <input
@@ -166,4 +173,21 @@
             card: 'front',
         }));
     });
+</script>
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('validateAmount', () => ({
+            cardholder: '',
+            error: '',
+            validateAmount() {
+                const value = parseFloat(this.cardholder);
+                if (isNaN(value) || value < 10) {
+                    this.error = 'The amount must be $10.00 or more.';
+                } else {
+                    this.error = '';
+                }
+            }
+        }));
+    });
+</script>
 </script>

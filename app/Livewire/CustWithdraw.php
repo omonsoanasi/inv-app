@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\AccountBalance;
 use App\Models\CustomerWithdrawal;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -14,6 +15,7 @@ class CustWithdraw extends Component
     public $actualAmount = 0;
     public $withdrawalAddress;
     public $password;
+    public $userBalance;
 
     public function withdrawal()
     {
@@ -30,6 +32,21 @@ class CustWithdraw extends Component
             session()->flash('error', 'Invalid password. Please try again.');
             return redirect()->route('cust-withdraw');
         }
+        $this->userBalance = AccountBalance::where('user_id', $user->id)->latest()->first();
+        $accountBalance = $this->userBalance->total_amount;
+
+        // Verify the user's balance
+        if ($accountBalance < $this->withdrawalAmount) {
+            session()->flash('error', 'Check your balance.');
+            return redirect()->route('cust-withdraw');
+        }
+
+        // Verify the user's balance
+        if ($accountBalance < 10) {
+            session()->flash('error', 'You are not eligible to use this service at this time.');
+            return redirect()->route('cust-withdraw');
+        }
+
 
         // Start a database transaction
         DB::transaction(function () use ($user) {

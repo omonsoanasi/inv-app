@@ -11,7 +11,12 @@ use App\Livewire\SystemAdministration\AccessControl;
 use App\Livewire\SystemAdministration\Cms;
 use App\Livewire\SystemAdministration\Dashboard\AdminDashboard;
 use App\Livewire\SystemAdministration\Dashboard\Index;
+use App\Livewire\SystemAdministration\Deposits\ConfirmBep20Payment;
+use App\Livewire\SystemAdministration\Deposits\ConfirmBnbPayment;
+use App\Livewire\SystemAdministration\Deposits\ConfirmTrc20Payment;
+use App\Livewire\SystemAdministration\Deposits\DepositIndex;
 use App\Livewire\SystemAdministration\SystemConfigs;
+use App\Livewire\SystemAdministration\Withdrawals\CustomerWithdrawals;
 use App\Livewire\Trc20Usdt;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -46,8 +51,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/account-profile', AccountProfile::class)->name('account-profile');
     Route::get('/cust-team', CustTeam::class)->name('cust-team');
 
-    Route::get('system-configs', SystemConfigs::class)->name('system-configs');
+    Route::get('/deposit-index', DepositIndex::class)->name('deposit-index');
+    Route::get('/system-configs', SystemConfigs::class)->name('system-configs');
     Route::get('/Trc20usdt-instructions', Trc20Usdt::class)->name('Trc20usdt-instructions');
+
+    Route::get('confirm-trc20-payment/{id}', ConfirmTrc20Payment::class)->name('confirm-trc20-payment');
+    Route::get('confirm-bep20-payment/{id}', ConfirmBep20Payment::class)->name('confirm-bep20-payment');
+    Route::get('confirm-bnb-payment/{id}', ConfirmBnbPayment::class)->name('confirm-bnb-payment');
+
+    Route::get('customer-withdrawals', CustomerWithdrawals::class)->name('customer-withdrawals');
 
     Route::get('activity-page/{id}', ActivityPage::class)->name('activity-page');
 });

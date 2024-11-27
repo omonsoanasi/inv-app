@@ -102,9 +102,9 @@
                         <a href="{{ route('dashboard') }}"
                            class="cursor-pointer h-full border-b-2 {{ Request::is('dashboard') ? 'border-blue-500 text-blue-500 dark:text-white dark:border-white' : 'border-transparent' }} inline-flex items-center mr-8">Application</a>
                     </div>
-                    <div class="ml-auto flex items-center space-x-7">
-                        <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500">Deposit</button>
-                    </div>
+{{--                    <div class="ml-auto flex items-center space-x-7">--}}
+{{--                        <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500">Deposit</button>--}}
+{{--                    </div>--}}
                 </div>
                 <div class="flex-grow flex overflow-x-hidden">
                     <div
@@ -129,9 +129,15 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('system-configs') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                                            <a href="{{ route('deposit-index') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
                                                 <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-drink"></i></span>
-                                                <span class="text-sm font-medium">System Announcements & Instructions</span>
+                                                <span class="text-sm font-medium">Client Deposits</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('customer-withdrawals') }}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                                                <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-drink"></i></span>
+                                                <span class="text-sm font-medium">Client Withdrawals</span>
                                             </a>
                                         </li>
                                         <li>
@@ -182,8 +188,8 @@
                                 </div>
                                 <div class="ml-auto sm:flex hidden items-center justify-end">
                                     <div class="text-right">
-                                        <div class="text-xs text-gray-400 dark:text-gray-400">Account balance:</div>
-                                        <div class="text-gray-900 text-lg dark:text-white">$2,794.00</div>
+{{--                                        <div class="text-xs text-gray-400 dark:text-gray-400">Account balance:</div>--}}
+{{--                                        <div class="text-gray-900 text-lg dark:text-white">$2,794.00</div>--}}
                                     </div>
                                     <button
                                         class="w-8 h-8 ml-4 text-gray-400 shadow dark:text-gray-400 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700">

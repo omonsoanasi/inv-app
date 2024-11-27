@@ -276,9 +276,11 @@
             </div>
 
             <!-- Button to simulate new deposits -->
-            <button onclick="addDeposit()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
-                Add Deposit
-            </button>
+            <a href="{{ route('cust-recharge') }}">
+                <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
+                    Add Deposit
+                </button>
+            </a>
         </div>
 
         <h4 class="font-semibold">Regulated By</h4>

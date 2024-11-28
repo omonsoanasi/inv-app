@@ -70,14 +70,43 @@
                             </a>
                         </div>
 
-                        <a href="{{ auth()->check() ? route('pro-activities') : route('login') }}">
-                            <div class="flex flex-col items-center transition ease-in duration-200 hover:text-blue-400 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-4 w-4" viewBox="0 0 16 16">
-                                    <path d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6zm11.386 3.785-1.806-2.41-.776 2.413zm-3.633.004.961-2.989H4.186l.963 2.995zM5.47 5.495 8 13.366l2.532-7.876zm-1.371-.999-.78-2.422-1.818 2.425zM1.499 5.5l5.113 6.817-2.192-6.82zm7.889 6.817 5.123-6.83-2.928.002z"/>
-                                </svg>
-                                <span class="text-xs">Pro</span>
-                            </div>
-                        </a>
+                        @if (auth()->check())
+                            @if (auth()->user()->user_type == 1)
+                                <a href="{{ route('pro-activities') }}">
+                                    <button>
+                                        <div class="flex flex-col items-center transition ease-in duration-200 hover:text-blue-400 ">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-4 w-4" viewBox="0 0 16 16">
+                                                <path d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6zm11.386 3.785-1.806-2.41-.776 2.413zm-3.633.004.961-2.989H4.186l.963 2.995zM5.47 5.495 8 13.366l2.532-7.876zm-1.371-.999-.78-2.422-1.818 2.425zM1.499 5.5l5.113 6.817-2.192-6.82zm7.889 6.817 5.123-6.83-2.928.002z"/>
+                                            </svg>
+                                            <span class="text-xs">Pro</span>
+                                        </div>
+                                    </button>
+                                </a>
+                            @else
+                                <button onclick="showUpgradeAlert()">
+                                    <div class="flex flex-col items-center transition ease-in duration-200 hover:text-blue-400 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-4 w-4" viewBox="0 0 16 16">
+                                            <path d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a .5 .5 a= " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
+                                            />
+                                        </svg>
+                                        <span class="text-xs">Pro</span>
+                                    </div>
+                                </button>
+                            @endif
+                        @else
+                            <a href="{{ route('login') }}">
+                                <button>
+                                    <div class="flex flex-col items-center transition ease-in duration-200 hover:text-blue-400 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-4 w-4" viewBox="0 0 16 16">
+                                            <path d="M3 .7a .5 .5 a= " . . . . . . . . . . . . . . . .
+                                            />
+                                        </svg>
+                                        <span class="text-xs">Login</span>
+                                    </div>
+                                </button>
+                            </a>
+                        @endif
+
                         <div class="flex flex-col items-center transition ease-in duration-200 hover:text-blue-400 ">
                             <a href="{{ auth()->check() ? route('account-profile') : route('login') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
@@ -94,4 +123,15 @@
             </div>
         </div>
     </body>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function showUpgradeAlert() {
+            Swal.fire({
+                title: 'Upgrade Required',
+                text: 'You need an upgrade to access this activity (Deposit a minimum of $10.00 to use this activity).',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+        }
+    </script>
 </html>

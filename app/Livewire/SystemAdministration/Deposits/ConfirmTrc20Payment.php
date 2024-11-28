@@ -46,8 +46,6 @@ class ConfirmTrc20Payment extends Component
                 // Create a new record if account balance does not exist
                 AccountBalance::create([
                     'user_id' => $depositerId,
-                    'activity_id' => 1,
-                    'completed_task_id' => 1,
                     'initial_amount' => 0,
                     'task_reset_time' => Carbon::now(),
                     'total_amount' => $this->confirmed_amount,
@@ -56,7 +54,10 @@ class ConfirmTrc20Payment extends Component
                     'trc20_u_s_d_t_complete_recharge_id' => $this->trc20Deposit->id,
                 ]);
             }
-
+            //update the user type
+            $this->user->update([
+                'user_type' => 1,
+            ]);
             // Update deposits table
             $this->trc20Deposit->update([
                 'confirmed' => true,

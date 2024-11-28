@@ -47,14 +47,12 @@ class ConfirmBep20Payment extends Component
                 // Create a new record if account balance does not exist
                 AccountBalance::create([
                     'user_id' => $depositerId,
-                    'activity_id' => 1,
-                    'completed_task_id' => 1,
                     'initial_amount' => 0,
                     'task_reset_time' => Carbon::now(),
                     'total_amount' => $this->confirmed_amount,
                     'deposit_type' => 'bep20USDT',
                     'confirmed_amount' => $this->confirmed_amount,
-                    'trc20_u_s_d_t_complete_recharge_id' => $this->bep20Deposit->id,
+                    'bep20_u_s_d_t_complete_recharge_id' => $this->bep20Deposit->id,
                 ]);
             }
 

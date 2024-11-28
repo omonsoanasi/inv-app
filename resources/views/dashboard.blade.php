@@ -158,9 +158,12 @@
         </div>
         <!-- Button to Open Pop-Up -->
         <div class="bg-green-200 p-4 rounded-lg mb-4">
-            <button id="openPopup" class="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-md">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-5 w-5 mr-2" viewBox="0 0 16 16">
-                    <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 0 1 5.51 15.1h-.548a1 1 0 0 1-.916-.599l-1.85-3.49-.202-.003A2.014 2.014 0 0 1 0 9V7a2.02 2.02 0 0 1 1.992-2.013 75 75 0 0 0 2.483-.075c3.043-.154 6.148-.849 8.525-2.199zm1 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0m-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233q.27.015.537.036c2.568.189 5.093.744 7.463 1.993zm-9 6.215v-4.13a95 95 0 0 1-1.992.052A1.02 1.02 0 0 0 1 7v2c0 .55.448 1.002 1.006 1.009A61 61 0 0 1 4 10.065m-.657.975l1.609 3.037.01 .024h .548l-.002-.014-.443 -2 .966a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .680z"/>
+            <button id="openPopup"
+                    class="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-md">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-5 w-5 mr-2"
+                     viewBox="0 0 16 16">
+                    <path
+                        d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 0 1 5.51 15.1h-.548a1 1 0 0 1-.916-.599l-1.85-3.49-.202-.003A2.014 2.014 0 0 1 0 9V7a2.02 2.02 0 0 1 1.992-2.013 75 75 0 0 0 2.483-.075c3.043-.154 6.148-.849 8.525-2.199zm1 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0m-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233q.27.015.537.036c2.568.189 5.093.744 7.463 1.993zm-9 6.215v-4.13a95 95 0 0 1-1.992.052A1.02 1.02 0 0 0 1 7v2c0 .55.448 1.002 1.006 1.009A61 61 0 0 1 4 10.065m-.657.975l1.609 3.037.01 .024h .548l-.002-.014-.443 -2 .966a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .68 a68 .680z"/>
                 </svg>
                 Announcements
             </button>
@@ -174,12 +177,19 @@
                     <h2 class="text-lg font-bold mb-4">How to Use PlanUSDT</h2>
                     <p class="mb-4">Welcome to PlanUSDT! Here’s a quick guide on how to use the app:</p>
                     <ul class="list-disc list-inside mb-4">
-                        <li><strong>Complete Activities:</strong> You can complete various activities available in the app to earn commissions.</li>
-                        <li><strong>Wait for Task Resets:</strong> After completing an activity, you must wait until the task resets before you can complete it again.</li>
-                        <li><strong>Upgrade Your Account:</strong> Recharge your account to unlock more tasks and earn higher commission returns.</li>
+                        <li><strong>Complete Activities:</strong> You can complete various activities available in the
+                            app to earn commissions.
+                        </li>
+                        <li><strong>Wait for Task Resets:</strong> After completing an activity, you must wait until the
+                            task resets before you can complete it again.
+                        </li>
+                        <li><strong>Upgrade Your Account:</strong> Recharge your account to unlock more tasks and earn
+                            higher commission returns.
+                        </li>
                     </ul>
                 </div>
-                <button id="closePopup" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Close</button>
+                <button id="closePopup" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Close
+                </button>
             </div>
         </div>
 
@@ -192,7 +202,8 @@
                         <div
                             class="relative flex flex-col justify-between bg-white shadow-md rounded-3xl bg-cover text-gray-800 overflow-hidden cursor-pointer w-full object-cover object-center h-64 my-2"
                             style="background-image:url('https://images.unsplash.com/reserve/8T8J12VQxyqCiQFGa2ct_bahamas-atlantis.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')">
-                            <div class="absolute bg-gradient-to-t from-green-400 to-blue-400 opacity-50 inset-0 z-0"></div>
+                            <div
+                                class="absolute bg-gradient-to-t from-green-400 to-blue-400 opacity-50 inset-0 z-0"></div>
                             <div class="relative flex flex-row items-end h-72 w-full">
                                 <div class="absolute right-0 top-0 m-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -214,28 +225,51 @@
                         </div>
                     </a>
                 @else
-                    <button onclick="showUpgradeAlert()" class="w-full h-full">
-                        <div
-                            class="relative flex flex-col justify-between bg-white shadow-md rounded-3xl bg-cover text-gray-800 overflow-hidden cursor-pointer w-full object-cover object-center h-64 my-2"
-                            style="background-image:url('https://images.unsplash.com/reserve/8T8J12VQxyqCiQFGa2ct_bahamas-atlantis.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')">
-                            <div class="absolute bg-gradient-to-t from-green-400 to-blue-400 opacity-50 inset-0 z-0"></div>
-                            <div class="relative flex flex-row items-end h-72 w-full">
-                                <div class="p-6 rounded-lg flex flex-col w-full z-10">
-                                    <h4 class="mt-1 text-white text-xl font-semibold leading-tight ">{{ $activity->activity_name }}</h4>
-                                    <div class="flex pt-4 text-sm text-gray-300">
-                                        <div class="flex items-center font-medium text-white">
-                                            ${{ number_format($activity->activity_commission,2) }}
-                                            <span class="text-gray-300 text-sm font-normal"></span>
+                    @if(auth()->check() && (auth()->user()->accountBalance?->total_amount) < 10)
+                        <button onclick="showUpgradeAlert()" class="w-full h-full">
+                            <div
+                                class="relative flex flex-col justify-between bg-white shadow-md rounded-3xl bg-cover text-gray-800 overflow-hidden cursor-pointer w-full object-cover object-center h-64 my-2"
+                                style="background-image:url('https://images.unsplash.com/reserve/8T8J12VQxyqCiQFGa2ct_bahamas-atlantis.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')">
+                                <div class="absolute bg-gradient-to-t from-green-400 to-blue-400 opacity-50 inset-0 z-0"></div>
+                                <div class="relative flex flex-row items-end h-72 w-full">
+                                    <div class="p-6 rounded-lg flex flex-col w-full z-10">
+                                        <h4 class="mt-1 text-white text-xl font-semibold leading-tight ">{{ $activity->activity_name }}</h4>
+                                        <div class="flex pt-4 text-sm text-gray-300">
+                                            <div class="flex items-center font-medium text-white">
+                                                ${{ number_format($activity->activity_commission,2) }}
+                                                <span class="text-gray-300 text-sm font-normal"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </button>
+                        </button>
+                    @else
+                        <a href="{{ auth()->check() ? route('activity-page', $activity->id) : route('login') }}">
+                            <button onclick="showUpgradeAlert()" class="w-full h-full">
+                                <div
+                                    class="relative flex flex-col justify-between bg-white shadow-md rounded-3xl bg-cover text-gray-800 overflow-hidden cursor-pointer w-full object-cover object-center h-64 my-2"
+                                    style="background-image:url('https://images.unsplash.com/reserve/8T8J12VQxyqCiQFGa2ct_bahamas-atlantis.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80')">
+                                    <div
+                                        class="absolute bg-gradient-to-t from-green-400 to-blue-400 opacity-50 inset-0 z-0"></div>
+                                    <div class="relative flex flex-row items-end h-72 w-full">
+                                        <div class="p-6 rounded-lg flex flex-col w-full z-10">
+                                            <h4 class="mt-1 text-white text-xl font-semibold leading-tight ">{{ $activity->activity_name }}</h4>
+                                            <div class="flex pt-4 text-sm text-gray-300">
+                                                <div class="flex items-center font-medium text-white">
+                                                    ${{ number_format($activity->activity_commission,2) }}
+                                                    <span class="text-gray-300 text-sm font-normal"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                        </a>
+                    @endif
                 @endif
             @endforeach
         </div>
-
 
 
         <h4 class="font-semibold">Member Activities</h4>
@@ -474,7 +508,7 @@
         document.getElementById('openPopup').onclick = showPopup;
 
         // Close the pop-up when the close button is clicked
-        document.getElementById('closePopup').onclick = function() {
+        document.getElementById('closePopup').onclick = function () {
             document.getElementById('popup').classList.add('hidden');
         };
     </script>

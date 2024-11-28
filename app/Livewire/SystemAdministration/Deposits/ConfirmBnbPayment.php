@@ -45,8 +45,6 @@ class ConfirmBnbPayment extends Component
                 // Create a new record if account balance does not exist
                 AccountBalance::create([
                     'user_id' => $depositerId,
-                    'activity_id' => 1,
-                    'completed_task_id' => 1,
                     'initial_amount' => 0,
                     'task_reset_time' => Carbon::now(),
                     'total_amount' => $this->confirmed_amount,
@@ -55,7 +53,10 @@ class ConfirmBnbPayment extends Component
                     'bnb_complete_recharge_id' => $this->bnbDeposit->id,
                 ]);
             }
-
+            //update the user type
+            $this->user->update([
+                'user_type' => 1,
+            ]);
             // Update deposits table
             $this->bnbDeposit->update([
                 'confirmed' => true,

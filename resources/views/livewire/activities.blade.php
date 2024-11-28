@@ -2,7 +2,7 @@
     @foreach($activities as $activity)
         <a href="{{ route('activity-page', $activity->id) }}">
             <div class="flex p-2 bg-white shadow-lg rounded-lg mt-5">
-                <img class="h-20 w-20 rounded-lg self-center" src="https://images.unsplash.com/photo-1452251889946-8ff5ea7b27ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=130&h=130" alt="food">
+                <img class="h-20 w-20 rounded-lg self-center" src="{{ asset('img/symbol.png') }}" alt="food">
                 <div class="p-2 pl-3 w-full">
                     <div class="flex justify-between items-center">
                         <h3 class="font-bold inline-block">{{ $activity->activity_name }}</h3>

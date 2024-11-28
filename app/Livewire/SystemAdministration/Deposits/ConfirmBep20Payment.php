@@ -14,11 +14,13 @@ class ConfirmBep20Payment extends Component
     public $id;
     public $bep20Deposit;
     public $confirmed_amount;
+    public $user;
 
     public function mount($id)
     {
         $this->id = $id;
         $this->bep20Deposit = Bep20USDTCompleteRecharge::find($id);
+        $this->user = $this->bep20Deposit->user;
     }
 
     public function confirmBep20Payment()
@@ -56,6 +58,10 @@ class ConfirmBep20Payment extends Component
                 ]);
             }
 
+            //update the user type
+            $this->user->update([
+                'user_type' => 1,
+            ]);
             // Update deposits table
             $this->bep20Deposit->update([
                 'confirmed' => true,

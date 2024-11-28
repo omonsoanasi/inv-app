@@ -1,21 +1,25 @@
 <?php
 
 use App\Livewire\AccountProfile;
+use App\Livewire\Activities;
 use App\Livewire\ActivityPage;
 use App\Livewire\Bep20Usdt;
 use App\Livewire\Bnb;
 use App\Livewire\CustRecharge;
 use App\Livewire\CustTeam;
 use App\Livewire\CustWithdraw;
+use App\Livewire\ProActivities;
 use App\Livewire\SystemAdministration\AccessControl;
 use App\Livewire\SystemAdministration\Cms;
 use App\Livewire\SystemAdministration\Dashboard\AdminDashboard;
+use App\Livewire\SystemAdministration\Dashboard\ChatResponse;
 use App\Livewire\SystemAdministration\Dashboard\Index;
 use App\Livewire\SystemAdministration\Deposits\ConfirmBep20Payment;
 use App\Livewire\SystemAdministration\Deposits\ConfirmBnbPayment;
 use App\Livewire\SystemAdministration\Deposits\ConfirmTrc20Payment;
 use App\Livewire\SystemAdministration\Deposits\DepositIndex;
 use App\Livewire\SystemAdministration\SystemConfigs;
+use App\Livewire\SystemAdministration\Withdrawals\CompleteWithdrawal;
 use App\Livewire\SystemAdministration\Withdrawals\CustomerWithdrawals;
 use App\Livewire\Trc20Usdt;
 use Illuminate\Support\Facades\Route;
@@ -60,8 +64,12 @@ Route::middleware('auth')->group(function () {
     Route::get('confirm-bnb-payment/{id}', ConfirmBnbPayment::class)->name('confirm-bnb-payment');
 
     Route::get('customer-withdrawals', CustomerWithdrawals::class)->name('customer-withdrawals');
+    Route::get('complete-withdrawal/{id}', CompleteWithdrawal::class)->name('complete-withdrawal');
+    Route::get('/chat-response/{id}', ChatResponse::class)->name('chat-response');
 
     Route::get('activity-page/{id}', ActivityPage::class)->name('activity-page');
+    Route::get('/pro-activities', ProActivities::class)->name('pro-activities');
+    Route::get('/activities', Activities::class)->name('activities');
 });
 
 require __DIR__.'/auth.php';

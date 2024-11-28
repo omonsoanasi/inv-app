@@ -7,6 +7,7 @@ use App\Models\CustomerWithdrawal;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use function Laravel\Prompts\select;
 
 class CustWithdraw extends Component
 {
@@ -32,6 +33,15 @@ class CustWithdraw extends Component
             session()->flash('error', 'Invalid password. Please try again.');
             return redirect()->route('cust-withdraw');
         }
+
+        //check if there is a pending withdrawal
+        $pendingWithdrawal = CustomerWithdrawal::where('user_id', $user->id)->where('pending', 1)->first();
+
+        if ($pendingWithdrawal) {
+            session()->flash('error', 'Already pending for withdrawal');
+            return redirect()->route('cust-withdraw');
+        }
+
         $this->userBalance = AccountBalance::where('user_id', $user->id)->latest()->first();
         $accountBalance = $this->userBalance->total_amount;
 
@@ -72,6 +82,11 @@ class CustWithdraw extends Component
                 'withdrawal_fee' => $fee,
                 'actual_withdrawal_received' => $actualAmountReceived,
                 'actual_withdrawal_amount' => $this->withdrawalAmount,
+            ]);
+
+            //update user balance
+            $this->userBalance->update([
+                'total_amount' => $this->userBalance->total_amount - $this->withdrawalAmount,
             ]);
         });
 

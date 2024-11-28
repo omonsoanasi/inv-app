@@ -10,7 +10,7 @@ class CustomerWithdrawals extends Component
     public function render()
     {
         return view('livewire.system-administration.withdrawals.customer-withdrawals', [
-            'customerWithdrawals' => CustomerWithdrawal::latest()->get()
+            'customerWithdrawals' => CustomerWithdrawal::where('status',0)->latest()->get()
         ])->layout('layouts.admin');
     }
 }

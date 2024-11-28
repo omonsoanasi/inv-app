@@ -103,13 +103,13 @@ new #[Layout('layouts.guest')] class extends Component
                     </label>
                 </div>
 
-                @if (Route::has('password.request'))
-                    <a class="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
-                       href="{{ route('password.request') }}"
-                       wire:navigate>
-                        {{ __('Forgot password?') }}
-                    </a>
-                @endif
+{{--                @if (Route::has('password.request'))--}}
+{{--                    <a class="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"--}}
+{{--                       href="{{ route('password.request') }}"--}}
+{{--                       wire:navigate>--}}
+{{--                        {{ __('Forgot password?') }}--}}
+{{--                    </a>--}}
+{{--                @endif--}}
             </div>
 
             <!-- Login Button -->

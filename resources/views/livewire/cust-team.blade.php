@@ -15,7 +15,7 @@
           </defs>
           <rect fill="url(#7e5e8ff8-1960-4094-a63a-2a0c0f922d69)" width="52" height="24"></rect>
         </svg>
-        <span class="relative text-red-600">X9823IV</span>
+        <span class="relative text-red-600">{{ auth()->user()->referral_code ?? 'NULL' }}</span>
       </span>
 
         </h2>

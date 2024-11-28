@@ -1,5 +1,6 @@
 @php
     $accountBalance = \App\Models\AccountBalance::where('user_id', auth()->user()->id)->latest()->first();
+    $pendingWithdrawal = \App\Models\CustomerWithdrawal::where('user_id', auth()->user()->id)->where('pending',true)->latest()->first();
 @endphp
 <div class="m-4">
     @if(session('message'))
@@ -117,6 +118,9 @@
         </header>
 
         <main class="mt-4 p-4">
+            @if($pendingWithdrawal)
+                <h6 class="text-xl font-semibold text-red-700 text-center">Pending withdrawal request of USDT {{ number_format($pendingWithdrawal->withdrawal_amount,2) }}</h6>
+            @endif
             <h1 class="text-xl font-semibold text-gray-700 text-center">Details</h1>
             <form id="withdrawalForm" wire:submit="withdrawal">
                 <div>

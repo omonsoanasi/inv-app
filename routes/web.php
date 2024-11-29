@@ -45,7 +45,7 @@ Route::get('/forgot-password', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/app-index', Index::class)->name('app-index')->middleware('role:System Administrator');
     Route::get('/app-dashboard', AdminDashboard::class)->name('app-dashboard')->middleware('role:System Administrator');
-    Route::get('/access-control', AccessControl::class)->name('access-control')->middleware('role:System Administrator');
+    Route::get('/access-control', AccessControl::class)->name('access-control');
     Route::get('/cms', Cms::class)->name('cms')->middleware('role:System Administrator');
 
     Route::get('cust-recharge', CustRecharge::class)->name('cust-recharge');

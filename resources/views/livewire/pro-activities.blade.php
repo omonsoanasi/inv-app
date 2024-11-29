@@ -1,6 +1,6 @@
 <div>
     @foreach($proActivities as $proActivity)
-        @if(auth()->check() && (auth()->user()->accountBalance?->total_amount) < 10)
+        @if(auth()->check() && (auth()->user()->accountBalance?->total_amount) < $proActivity->activity_commission)
             <button onclick="showUpgradeAlert()" class="w-full h-full">
                 <div class="flex p-2 bg-white shadow-lg rounded-lg mt-5">
                     <img class="h-20 w-20 rounded-lg self-center" src="{{ asset('img/symbol.png') }}" alt="food">

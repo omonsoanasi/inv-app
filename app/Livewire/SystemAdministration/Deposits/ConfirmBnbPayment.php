@@ -14,11 +14,13 @@ class ConfirmBnbPayment extends Component
     public $id;
     public $bnbDeposit;
     public $confirmed_amount;
+    public $user;
 
     public function mount($id)
     {
         $this->id = $id;
         $this->bnbDeposit = BnbCompleteRecharge::find($id);
+        $this->user = $this->bnbDeposit->user;
     }
 
     public function confirmBnbPayment()

@@ -15,11 +15,13 @@ class ConfirmTrc20Payment extends Component
     public $id;
     public $trc20Deposit;
     public $confirmed_amount;
+    public $user;
 
     public function mount($id)
     {
         $this->id = $id;
         $this->trc20Deposit = Trc20USDTCompleteRecharge::find($id);
+        $this->user = $this->trc20Deposit->user;
     }
 
     public function confirmTrc20Payment()
